@@ -9,11 +9,15 @@ declare let output: any;
 copy(text: string): text
 print(text: string): undefined
 */
-`
+`;
 
 fs.mkdirSync(path.join(__dirname, "solutions", solnName));
 [solnName + ".1.js", solnName + ".2.js", solnName + ".txt"].forEach((v, i) =>
-	fs.writeFileSync(path.join(__dirname, "solutions", solnName, v), i < 2 ? initialText : "", "utf-8")
+	fs.writeFileSync(
+		path.join(__dirname, "solutions", solnName, v),
+		i < 2 ? initialText : "",
+		"utf-8",
+	),
 );
 
 console.log("done");

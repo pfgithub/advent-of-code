@@ -1,7 +1,7 @@
 {
 	"scripts": {
 		"watch": "onchange --kill solutions/\\*\\*/\\*.js -- node runner.js '{{changed}}'",
-		"prettierwatch": "onchange solutions/\\*\\*/\\*.js -- prettier --write '{{changed}}'",
+		"prettierwatch": "onchange solutions/\\*\\*/\\*.{js,md,json} \\*.{js,md,json} -- prettier --write '{{changed}}'",
 		"go": "node setup.js"
 	},
 	"dependencies": {
