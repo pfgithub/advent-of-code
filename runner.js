@@ -22,7 +22,9 @@ const sandbox = {
 	output: undefined,
 	copy: text => (clipboardy.writeSync(text), text),
 	print: (...v) => console.log(...v),
-	console: console,
+	console,
+	process,
+	require,
 };
 
 vm.createContext(sandbox);
