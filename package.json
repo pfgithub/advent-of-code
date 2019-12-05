@@ -1,0 +1,14 @@
+{
+	"scripts": {
+		"watch": "onchange --kill solutions/\\*\\*/\\*.js -- node runner.js '{{changed}}'",
+		"prettierwatch": "onchange solutions/\\*\\*/\\*.js -- prettier --write '{{changed}}'",
+		"go": "node setup.js"
+	},
+	"dependencies": {
+		"clipboardy": "^2.1.0"
+	},
+	"devDependencies": {
+		"onchange": "^6.1.0",
+		"prettier": "^1.19.1"
+	}
+}
