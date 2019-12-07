@@ -25,6 +25,7 @@ const sandbox = {
 	console,
 	process,
 	require,
+	setTimeout,
 };
 
 vm.createContext(sandbox);
