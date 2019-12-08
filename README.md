@@ -5,7 +5,7 @@ my adventofcode solutions and helper tool
 `yarn install`  
 `yarn go dayX` - get set up for a challenge  
 `yarn watch` - start running code on save  
-`yarn watchPrettier` - format solution code on save
+`yarn prettierwatch` - format solution code on save
 
 how to use:
 
