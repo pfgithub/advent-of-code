@@ -31,6 +31,7 @@ const sandbox = {
 	process,
 	require,
 	setTimeout,
+	Math,
 };
 
 vm.createContext(sandbox);
