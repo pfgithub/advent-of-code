@@ -49,6 +49,7 @@ async function intcode(
 		"3": async () => {
 			let [out] = [p()];
 			let value = await getInput();
+			if (typeof value === "number") value = BigInt(value);
 			memory[out] = value;
 		},
 		"4": async () => {
@@ -111,14 +112,14 @@ async function intcode(
 (async () => {
 	let odat = [];
 	let boardMap = [];
-	for (let y = 0; y < 25; y++) {
+	for (let y = 0; y < 1000; y++) {
 		let by = [];
 		boardMap.push(by);
-		for (let x = 0; x < 100; x++) {
+		for (let x = 0; x < 1000; x++) {
 			by.push("_");
 		}
 	}
-	let robpos = { x: 10, y: 10 };
+	let robpos = { x: 100, y: 100 };
 	let direction = 0;
 	function getdir(d) {
 		if (d === 0) {
@@ -138,10 +139,16 @@ async function intcode(
 	let paintedPanelCount = 0;
 	function doOdat() {
 		let [colorPaint, turnDir] = odat;
-		console.log("painting", colorPaint ? "#" : ".", "then turning", turnDir);
+		console.log(
+			"painting",
+			colorPaint ? "#" : ".",
+			"then turning",
+			turnDir ? 1 : -1,
+		);
 		odat = [];
 		if (boardMap[robpos.y][robpos.x] === "_") {
 			// console.log(robpos.y * 100 + robpos.x);
+			// this never happens twice so it doesn't matter anyway
 			paintedPanelCount++;
 		}
 		// paintedPanelCount++;
@@ -158,8 +165,9 @@ async function intcode(
 	await intcode(
 		input,
 		async () => {
-			return 49805731n; // this number doesn't seem to affect anything
-			// return boardMap[robpos.y][robpos.x] === "#" ? 1 : 0;
+			// return 0;
+			// return 49805731n; // this number doesn't seem to affect anything
+			return BigInt(boardMap[robpos.y][robpos.x] === "#" ? 1 : 0);
 		},
 		v => (odat.push(v), odat.length === 2 && doOdat()),
 	);
