@@ -127,7 +127,7 @@ async function intcode(
 		odat = [];
 		if (x === -1n && y === 0n) {
 			gameScreen[26][0] = tileid;
-			console.log(tileid);
+			// console.log(tileid);
 		} else {
 			// console.log(x, y, tileid);
 			gameScreen[y][x] = tileid;
@@ -161,10 +161,10 @@ async function intcode(
 				.join("\n"),
 		);
 	};
+	let prevUT = 0;
 	await intcode(
 		input,
 		async () => {
-			drawGame();
 			// console.log(
 			// 	gameScreen
 			// 		.map(w => w.map(q => ({ "0": " ", "3": "_" }["" + q] || q)).join(""))
@@ -183,7 +183,11 @@ async function intcode(
 				}
 			}
 			if (inp.length === 0) throw 0;
-			await tmt(50);
+			if (prevUT + 25 < new Date().getTime()) {
+				prevUT = new Date().getTime();
+				drawGame();
+				// await tmt(100);
+			}
 			return yloc.x > bloc.x ? -1n : yloc.x < bloc.x ? 1n : 0;
 			// return inp.shift();
 			// return 1n;
