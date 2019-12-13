@@ -130,7 +130,13 @@ async function intcode(
 			// console.log(tileid);
 		} else {
 			// console.log(x, y, tileid);
-			gameScreen[y][x] = tileid;
+			if (gameScreen[y][x] === 3n) {
+				gameScreen[y][x] = 98;
+			} else if (gameScreen[y][x] === 4n) {
+				gameScreen[y][x] = 99;
+			} else {
+				gameScreen[y][x] = tileid;
+			}
 		}
 	}
 	let tmt = ms => new Promise(r => setTimeout(r, ms));
@@ -141,20 +147,27 @@ async function intcode(
 		process.stdout.write("\u001B[2J\u001B[0;0f");
 		console.log(
 			gameScreen
-				.map(w =>
+				.map((w, y) =>
 					w
 						.map(
-							q =>
-								({
+							(q, x) => (
+								(q === 99 && (gameScreen[y][x] = 0),
+								q === 98 && (gameScreen[y][x] = 0)),
+								{
 									"0": "\u001B[47m  \u001B[30m\u001B(B\u001B[m",
 									"3":
 										"\u001B[33m\u001B[47m\ue0be\ue0bc\u001B[30m\u001B(B\u001B[m",
+									"98":
+										"\u001B[35m\u001B[47m\ue0be\ue0bc\u001B[30m\u001B(B\u001B[m",
 									"4":
 										"\u001B[32m\u001B[47m\ue0b6\ue0b4\u001B[30m\u001B(B\u001B[m",
+									"99":
+										"\u001B[34m\u001B[47m\ue0b6\ue0b4\u001B[30m\u001B(B\u001B[m",
 									"2": "\u001B[37m\u001B[40m  \u001B[30m\u001B(B\u001B[m",
 									"5": "  ",
 									"1": "\u001B[37m\u001B[40m  \u001B[30m\u001B(B\u001B[m",
-								}["" + q] || q),
+								}["" + q] || q
+							),
 						)
 						.join(""),
 				)
@@ -195,5 +208,6 @@ async function intcode(
 		v => (odat.push(v), odat.length === 3 && doOdat()),
 		m => (m[0] = 2n),
 	);
+	drawGame();
 	drawGame();
 })();
