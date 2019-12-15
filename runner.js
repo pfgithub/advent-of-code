@@ -2,6 +2,7 @@ const fs = require("fs");
 const path = require("path");
 const vm = require("vm");
 const clipboardy = require("clipboardy");
+const babel = require("@babel/core");
 // const readline = require("readline");
 // const rlint = readline.createInterface({
 // 	input: process.stdin,
@@ -9,7 +10,7 @@ const clipboardy = require("clipboardy");
 // });
 
 const filename = process.argv[2];
-let txtName = filename.replace(/\.[0-9]+\.js$/, ".txt");
+let txtName = filename.replace(/\.[0-9]+\.(?:js|ts)$/, ".txt");
 const filecont = fs.readFileSync(path.resolve(filename), "utf-8");
 const inputcont = fs.readFileSync(path.resolve(txtName), "utf-8");
 
@@ -24,7 +25,7 @@ process.stdout.write("\u001b[2J\u001b[0;0H");
 console.log(`
 ${Math.random()} - ${new Date().getTime()}
 ====================================
-${path.basename(filename).replace(/\.js/, "")}
+${path.basename(filename).replace(/\.(?:js|ts)/, "")}
 ====================================`);
 
 const sandbox = {
@@ -42,7 +43,23 @@ const sandbox = {
 
 vm.createContext(sandbox);
 
-vm.runInContext(filecont, sandbox);
+console.log("Compiling...");
+babel.transform(
+	filecont,
+	{
+		filename: "day.tsx",
+		presets: ["@babel/preset-typescript"],
+		plugins: ["@babel/plugin-syntax-bigint"],
+	},
+	(err, res) => {
+		if (err) {
+			throw err;
+		}
+		console.log("Compiled");
+		console.log("====================================");
+		vm.runInContext(res.code, sandbox);
+	},
+);
 
 // console.log("====================================");
 // console.log(sandbox.output);

@@ -1,13 +1,17 @@
 {
 	"scripts": {
-		"watch": "onchange --kill solutions/\\*\\*/\\*.js -- node runner.js '{{changed}}'",
-		"prettierwatch": "onchange solutions/\\*\\*/\\*.{js,md,json} \\*.{js,md,json} -- prettier --write '{{changed}}'",
+		"watch": "onchange --kill solutions/\\*\\*/\\*.{js,ts} -- node runner.js '{{changed}}'",
+		"prettierwatch": "onchange solutions/\\*\\*/\\*.{js,ts,md,json} \\*.{js,md,json} -- prettier --write '{{changed}}'",
 		"go": "node setup.js"
 	},
 	"dependencies": {
 		"clipboardy": "^2.1.0"
 	},
 	"devDependencies": {
+		"@babel/core": "^7.7.5",
+		"@babel/plugin-syntax-bigint": "^7.7.4",
+		"@babel/preset-typescript": "^7.7.4",
+		"@types/node": "^12.12.17",
 		"onchange": "^6.1.0",
 		"prettier": "^1.19.1"
 	}
