@@ -2,6 +2,11 @@ const fs = require("fs");
 const path = require("path");
 const vm = require("vm");
 const clipboardy = require("clipboardy");
+// const readline = require("readline");
+// const rlint = readline.createInterface({
+// 	input: process.stdin,
+// 	output: process.stdout,
+// });
 
 const filename = process.argv[2];
 let txtName = filename.replace(/\.[0-9]+\.js$/, ".txt");
@@ -32,11 +37,12 @@ const sandbox = {
 	require,
 	setTimeout,
 	Math,
+	require,
 };
 
 vm.createContext(sandbox);
 
 vm.runInContext(filecont, sandbox);
 
-console.log("====================================");
-console.log(sandbox.output);
+// console.log("====================================");
+// console.log(sandbox.output);
