@@ -1,3 +1,5 @@
+export {};
+
 function oneway<T>(): { read: () => Promise<T>; write: (v: T) => void } {
 	let stream: T[] = [];
 	let waitingnow: ((v: T) => void) | undefined;

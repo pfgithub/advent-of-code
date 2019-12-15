@@ -10,6 +10,7 @@
 	"devDependencies": {
 		"@babel/core": "^7.7.5",
 		"@babel/plugin-syntax-bigint": "^7.7.4",
+		"@babel/plugin-transform-modules-commonjs": "^7.7.5",
 		"@babel/preset-typescript": "^7.7.4",
 		"@types/node": "^12.12.17",
 		"onchange": "^6.1.0",

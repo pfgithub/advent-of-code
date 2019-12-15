@@ -39,6 +39,7 @@ const sandbox = {
 	setTimeout,
 	Math,
 	require,
+	exports: {},
 };
 
 vm.createContext(sandbox);
@@ -49,7 +50,10 @@ babel.transform(
 	{
 		filename: "day.tsx",
 		presets: ["@babel/preset-typescript"],
-		plugins: ["@babel/plugin-syntax-bigint"],
+		plugins: [
+			"@babel/plugin-syntax-bigint",
+			"@babel/plugin-transform-modules-commonjs",
+		],
 	},
 	(err, res) => {
 		if (err) {
