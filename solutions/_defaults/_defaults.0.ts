@@ -34,6 +34,7 @@ function intcode(
 ) {
 	let inputs = oneway<bigint>();
 	let outputs = oneway<bigint>();
+	let over = { over: false };
 
 	let done = (async () => {
 		let memory: bigint[] = input.split(",").map(w => BigInt(+w));
@@ -144,12 +145,14 @@ function intcode(
 
 			instructionPointer += parameterIndex;
 		}
+		over.over = true;
 	})();
 
 	return {
 		done,
 		read: async () => await outputs.read(),
 		write: (v: bigint) => inputs.write(v),
+		over,
 	};
 
 	// return {write: (value) => , read: async () => readvalue}
@@ -162,6 +165,7 @@ type Board<T> = {
 	get(x: nobi, y: nobi): T;
 	set(x: nobi, y: nobi, t: T): void;
 	clear(): void;
+	forEach(visitor: (v: T, x: number, y: number) => void): void;
 	print(printer?: (v: T, x: number, y: number) => string | nobi): void;
 };
 function makeBoard<T>(fill: T): Board<T> {
@@ -201,6 +205,18 @@ function makeBoard<T>(fill: T): Board<T> {
 			if (y > limits.ymax) limits.ymax = Number(y);
 			if (!board[Number(y)]) board[Number(y)] = [];
 			board[Number(y)][Number(x)] = v;
+		},
+		forEach: visitor => {
+			if (!limits) return;
+			let ym = limits.ymin;
+			let yma = limits.ymax;
+			let xm = limits.xmin;
+			let xma = limits.xmax;
+			for (let y = ym; y <= yma; y++) {
+				for (let x = xm; x <= xma; x++) {
+					visitor(reso.get(x, y), x, y);
+				}
+			}
 		},
 		print: (printer = v => v as any) => {
 			// ratelimit print
