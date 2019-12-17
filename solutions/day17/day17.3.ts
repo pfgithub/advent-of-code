@@ -263,7 +263,7 @@ function ratelimit(timeout: number) {
 }
 
 function ms(t: number) {
-	return new Promise(r => setTimeout(r, t));
+	return new Promise(r => setTimeout(() => r(), t));
 }
 
 (async () => {
@@ -288,6 +288,7 @@ function ms(t: number) {
 			// console.log(m);
 			if (m === 2843) break;
 		}
+		process.stdout.write("\u001b[2J\u001b[0;0H");
 		board.print();
 	}
 	await printCamera();
@@ -317,18 +318,17 @@ function ms(t: number) {
 	C: L,10,L,8,L,12,R,12
 	*/
 
-	console.log(await readLine());
 	await sendText("A,C,A,B,A,A,B,C,B,C"); // fns a,b,c
-	console.log(await readLine());
 	await sendText("L,12,L,8,R,12");
-	console.log(await readLine());
 	await sendText("R,12,L,8,L,10");
-	console.log(await readLine());
 	await sendText("L,10,L,8,L,12,R,12");
 	console.log(await readLine());
-	await sendText("N");
+	console.log(await readLine());
+	console.log(await readLine());
+	console.log(await readLine());
+	console.log(await readLine());
+	await sendText("Y");
 	while (true) {
 		await printCamera();
-		await ms(100);
 	}
 })();

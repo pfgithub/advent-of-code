@@ -241,7 +241,7 @@ function intcode(
 	function updateScreen(direction, result) {
 		let [statusCode] = [result];
 		let [cdir] = [direction];
-		odat = [];
+		// odat = [];
 
 		let [dx, dy] = dirinf["" + cdir];
 		let [cx, cy] = [dpos.x + dx, dpos.y + dy];
