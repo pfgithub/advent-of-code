@@ -167,6 +167,7 @@ type Board<T> = {
 	clear(): void;
 	forEach(visitor: (v: T, x: number, y: number) => void): void;
 	print(printer?: (v: T, x: number, y: number) => string | nobi): void;
+	copy(): Board<T>;
 };
 function makeBoard<T>(fill: T): Board<T> {
 	// it would be useful if board could center at 0,0 and expand infinitely
@@ -218,11 +219,16 @@ function makeBoard<T>(fill: T): Board<T> {
 				}
 			}
 		},
+		copy: () => {
+			let nb = makeBoard<T>(fill);
+			reso.forEach((v, x, y) => nb.set(x, y, v));
+			return nb;
+		},
 		print: (printer = v => v as any) => {
 			// ratelimit print
 			if (!limits) return console.log("*no board to print*");
 			let ylength = 0;
-			for (let y = limits.ymin; y <= limits.ymax; y++) {
+			for (let y = limits.ymin - 1; y <= limits.ymax + 1; y++) {
 				ylength = Math.max(y.toString().length, ylength);
 			}
 			console.log(
@@ -266,16 +272,119 @@ function ms(t: number) {
 	return new Promise(r => setTimeout(r, t));
 }
 
+function shuffle<T>(a: T[]): T[] {
+	var j, x, i;
+	for (i = a.length - 1; i > 0; i--) {
+		j = Math.floor(Math.random() * (i + 1));
+		x = a[i];
+		a[i] = a[j];
+		a[j] = x;
+	}
+	return a;
+}
+
 (async () => {
-	let program = intcode(input);
 	let board = makeBoard("·");
-	let rl = ratelimit(25);
-	rl.do(() => board.print());
-	board.set(5, 6, "?");
-	rl.do(() => board.print());
-	await ms(50);
-	rl.do(() => board.print());
-	board.set(-3, -4, "!");
-	await ms(50);
-	rl.do(() => board.print(v => (v === "?" ? ")" : v)));
+	let inv = input;
+	let rl = ratelimit(100);
+	inv.split("\n").forEach((l, y) => {
+		l.split("").forEach((q, x) => {
+			board.set(x, y, q);
+		});
+	});
+	board.print();
+	let currentPos = { x: 0, y: 0 };
+	board.forEach((v, x, y) => {
+		if (v === "@") {
+			currentPos = { x, y };
+			board.set(x, y, ".");
+		}
+	});
+
+	let paths: { doors: string[]; distance: number }[] = [
+		{
+			doors: [],
+			distance: 0,
+		},
+	];
+	function pathfind(
+		pfb: Board<number>,
+		x: number,
+		y: number,
+		distance: number,
+	): { door: string; distance: number }[] {
+		// check if current pos contains a key;
+		// check if current pos contains a dot .
+		let boardv = board.get(x, y);
+		let resm: { door: string; distance: number }[] = [];
+		if (
+			boardv === "." ||
+			(boardv.charAt(0) >= "a".charAt(0) && boardv.charAt(0) <= "z".charAt(0))
+		) {
+			if (pfb.get(x, y) > distance) {
+				pfb.set(x, y, distance);
+				if (boardv === ".") {
+					resm.push(...pathfind(pfb, x + 1, y, distance + 1));
+					resm.push(...pathfind(pfb, x - 1, y, distance + 1));
+					resm.push(...pathfind(pfb, x, y + 1, distance + 1));
+					resm.push(...pathfind(pfb, x, y - 1, distance + 1));
+				} else {
+					resm.push({ door: board.get(x, y), distance });
+				}
+			}
+		}
+		return resm;
+	}
+	while (true) {
+		paths = paths.sort((pa, pb) => pa.distance - pb.distance);
+		let currentPath = paths.shift()!;
+		rl.do(() => console.log(currentPath.doors.join(""), currentPath.distance));
+		// remove all doors
+		let itemsRemoved: { x: number; y: number; c: string }[] = [];
+		let cpos = { x: currentPos.x, y: currentPos.y };
+
+		let finalDoor = currentPath.doors[currentPath.doors.length - 1];
+		board.forEach((v, x, y) => {
+			currentPath.doors.forEach(door => {
+				if (v === door || v === door.toUpperCase()) {
+					if (v === finalDoor) {
+						cpos = { x, y };
+					}
+					itemsRemoved.push({ x, y, c: v });
+					board.set(x, y, ".");
+				}
+			});
+		});
+		// currentPath.doors.forEach(door => {
+		// 	board.forEach((v, x, y) => {
+		// 		if (v === door.toUpperCase()) cpos = { x, y };
+		// 	});
+		// 	itemsRemoved.push({ x: cpos.x, y: cpos.y, c: door.toUpperCase() });
+		// 	board.set(cpos.x, cpos.y, ".");
+		// 	board.forEach((v, x, y) => {
+		// 		if (v === door) cpos = { x, y };
+		// 	});
+		// 	itemsRemoved.push({ x: cpos.x, y: cpos.y, c: door });
+		// 	board.set(cpos.x, cpos.y, ".");
+		// });
+
+		let pfb = makeBoard(Infinity);
+		let nextAvailableDoors = pathfind(pfb, cpos.x, cpos.y, 0);
+		if (nextAvailableDoors.length === 0) {
+			console.log("!!!done", currentPath);
+			break;
+		}
+		nextAvailableDoors.forEach(nad => {
+			paths.push({
+				doors: [...currentPath.doors, nad.door],
+				distance: currentPath.distance + nad.distance,
+			});
+		});
+		// add back doors
+		itemsRemoved.forEach(it => {
+			board.set(it.x, it.y, it.c);
+		});
+
+		// break;
+	}
 })();
