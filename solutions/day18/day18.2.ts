@@ -307,6 +307,7 @@ function shuffle<T>(a: T[]): T[] {
 			distance: 0,
 		},
 	];
+	let pathsDoneBefore: { [key: string]: boolean } = {};
 	function pathfind(
 		pfb: Board<number>,
 		x: number,
@@ -335,10 +336,21 @@ function shuffle<T>(a: T[]): T[] {
 		}
 		return resm;
 	}
+	// 4406
 	while (true) {
 		paths = paths.sort((pa, pb) => pa.distance - pb.distance);
 		let currentPath = paths.shift()!;
-		rl.do(() => console.log(currentPath.doors.join(""), currentPath.distance));
+		let pshort =
+			currentPath.doors
+				.slice(0, currentPath.doors.length - 1)
+				.sort()
+				.join("") + (currentPath.doors[currentPath.doors.length - 1] || "");
+		// console.log(pshort);
+		if (pathsDoneBefore[pshort]) {
+			continue;
+		}
+		pathsDoneBefore[pshort] = true;
+		rl.do(() => console.log(pshort, currentPath.distance));
 		// remove all doors
 		let itemsRemoved: { x: number; y: number; c: string }[] = [];
 		let cpos = { x: currentPos.x, y: currentPos.y };
