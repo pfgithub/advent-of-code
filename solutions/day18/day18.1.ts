@@ -286,18 +286,25 @@ function shuffle<T>(a: T[]): T[] {
 (async () => {
 	let board = makeBoard("·");
 	let inv = input;
+	// let rl = ratelimit(100);
 	inv.split("\n").forEach((l, y) => {
 		l.split("").forEach((q, x) => {
 			board.set(x, y, q);
 		});
 	});
 	board.print();
-	function openDoor(name: string, board: Board<string>) {
+	function openDoor(
+		name: string,
+		board: Board<string>,
+	): { x: number; y: number } {
+		let resv: any;
 		board.forEach((v, x, y) => {
 			if (v === name) {
 				board.set(x, y, ".");
+				resv = { x, y };
 			}
 		});
+		return resv;
 	}
 	let currentPos = { x: 0, y: 0 };
 	board.forEach((v, x, y) => {
@@ -306,9 +313,9 @@ function shuffle<T>(a: T[]): T[] {
 			board.set(x, y, ".");
 		}
 	});
-	let minTotal = 4946;
+	let minTotal = 4906;
 	// guess:
-	minTotal = 4000;
+	// minTotal = 4000;
 	let minTotalPath = "";
 	function trySolve(
 		board: Board<string>,
@@ -358,30 +365,36 @@ function shuffle<T>(a: T[]): T[] {
 			console.log(pathmmm + " !!MIN", minTotal, minTotalPath);
 			return totalSteps;
 		}
-		// checked 5242, 4950, 4946
+		// checked 5242, 4950, 4946, 4942, 4906, 4846, 4686, 4682, 4594, 4566, 4478
 		/*
-		.sort((a, b) => {
-			return accessableKeys[a].steps - accessableKeys[b].steps;
-		})
-		*/
-		shuffle(objk).forEach((key, i) => {
+			.sort((a, b) => {
+				return accessableKeys[a].steps - accessableKeys[b].steps;
+			})
+		 */
+		// console.log(objk);
+		objk.forEach((key, i) => {
 			let keyinfo = accessableKeys[key];
-			console.log(
-				pathmmm + key + " step " + i + "/" + objk.length,
-				"(" + (keyinfo.steps + totalSteps) + ")",
-			);
+			// rl.do(() =>
+			if (layer < 20)
+				console.log(
+					pathmmm + key + " step " + i + "/" + objk.length,
+					"(" + (keyinfo.steps + totalSteps) + ")",
+					minTotal,
+				);
+			// );
 			if (keyinfo.steps + totalSteps > minTotal) {
-				console.log(pathmmm + key + " quick exiting ", minTotal);
+				// rl.do(() =>
+				// console.log(pathmmm + key + " quick exiting ", minTotal);
+				// );
 				return;
 			}
 			// console.log("Attempting solution by opening door", key);
-			let nb = board.copy();
-			// nb.print();
-			openDoor(key, nb);
-			openDoor(key.toUpperCase(), nb);
-			nb.set(keyinfo.x, keyinfo.y, "@");
+			// let nb = board.copy();
+			let nb = board;
 			// nb.print();
 			nb.set(keyinfo.x, keyinfo.y, ".");
+			let doorReplacePos = openDoor(key.toUpperCase(), nb);
+			// nb.print();
 			let stepCount = trySolve(
 				nb,
 				{ x: keyinfo.x, y: keyinfo.y },
@@ -389,6 +402,8 @@ function shuffle<T>(a: T[]): T[] {
 				layer + 1,
 				pathmmm + key,
 			);
+			nb.set(keyinfo.x, keyinfo.y, key);
+			nb.set(doorReplacePos.x, doorReplacePos.y, key.toUpperCase());
 			// console.log("Got in", stepCount);
 			finalStepCount = Math.min(finalStepCount, stepCount);
 		});
