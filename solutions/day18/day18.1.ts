@@ -306,7 +306,9 @@ function shuffle<T>(a: T[]): T[] {
 			board.set(x, y, ".");
 		}
 	});
-	let minTotal = Infinity;
+	let minTotal = 4946;
+	// guess:
+	minTotal = 4000;
 	let minTotalPath = "";
 	function trySolve(
 		board: Board<string>,
@@ -315,6 +317,10 @@ function shuffle<T>(a: T[]): T[] {
 		layer: number,
 		pathmmm: string,
 	): number {
+		if (totalSteps > minTotal) {
+			console.log(pathmmm + " quick exiting ", minTotal);
+			return totalSteps + 100;
+		}
 		let accessableKeys: {
 			[key: string]: { x: number; y: number; steps: number };
 		} = {};
@@ -358,31 +364,34 @@ function shuffle<T>(a: T[]): T[] {
 			return accessableKeys[a].steps - accessableKeys[b].steps;
 		})
 		*/
-		objk
-			.sort((a, b) => {
-				return accessableKeys[a].steps + accessableKeys[b].steps;
-			})
-			.forEach((key, i) => {
-				console.log(pathmmm + " step " + i + "/" + objk.length);
-				let keyinfo = accessableKeys[key];
-				// console.log("Attempting solution by opening door", key);
-				let nb = board.copy();
-				// nb.print();
-				openDoor(key, nb);
-				openDoor(key.toUpperCase(), nb);
-				nb.set(keyinfo.x, keyinfo.y, "@");
-				// nb.print();
-				nb.set(keyinfo.x, keyinfo.y, ".");
-				let stepCount = trySolve(
-					nb,
-					{ x: keyinfo.x, y: keyinfo.y },
-					totalSteps + keyinfo.steps,
-					layer + 1,
-					pathmmm + key,
-				);
-				// console.log("Got in", stepCount);
-				finalStepCount = Math.min(finalStepCount, stepCount);
-			});
+		shuffle(objk).forEach((key, i) => {
+			let keyinfo = accessableKeys[key];
+			console.log(
+				pathmmm + key + " step " + i + "/" + objk.length,
+				"(" + (keyinfo.steps + totalSteps) + ")",
+			);
+			if (keyinfo.steps + totalSteps > minTotal) {
+				console.log(pathmmm + key + " quick exiting ", minTotal);
+				return;
+			}
+			// console.log("Attempting solution by opening door", key);
+			let nb = board.copy();
+			// nb.print();
+			openDoor(key, nb);
+			openDoor(key.toUpperCase(), nb);
+			nb.set(keyinfo.x, keyinfo.y, "@");
+			// nb.print();
+			nb.set(keyinfo.x, keyinfo.y, ".");
+			let stepCount = trySolve(
+				nb,
+				{ x: keyinfo.x, y: keyinfo.y },
+				totalSteps + keyinfo.steps,
+				layer + 1,
+				pathmmm + key,
+			);
+			// console.log("Got in", stepCount);
+			finalStepCount = Math.min(finalStepCount, stepCount);
+		});
 		// console.log(currentPos, accessableKeys);
 		return finalStepCount;
 	}
