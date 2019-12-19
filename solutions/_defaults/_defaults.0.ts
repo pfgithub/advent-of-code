@@ -167,6 +167,7 @@ type Board<T> = {
 	clear(): void;
 	forEach(visitor: (v: T, x: number, y: number) => void): void;
 	print(printer?: (v: T, x: number, y: number) => string | nobi): void;
+	copy(): Board<T>;
 };
 function makeBoard<T>(fill: T): Board<T> {
 	// it would be useful if board could center at 0,0 and expand infinitely
@@ -218,11 +219,16 @@ function makeBoard<T>(fill: T): Board<T> {
 				}
 			}
 		},
+		copy: () => {
+			let nb = makeBoard<T>(fill);
+			reso.forEach((v, x, y) => nb.set(x, y, v));
+			return nb;
+		},
 		print: (printer = v => v as any) => {
 			// ratelimit print
 			if (!limits) return console.log("*no board to print*");
 			let ylength = 0;
-			for (let y = limits.ymin; y <= limits.ymax; y++) {
+			for (let y = limits.ymin - 1; y <= limits.ymax + 1; y++) {
 				ylength = Math.max(y.toString().length, ylength);
 			}
 			console.log(
@@ -264,6 +270,17 @@ function ratelimit(timeout: number) {
 
 function ms(t: number) {
 	return new Promise(r => setTimeout(r, t));
+}
+
+function shuffle<T>(a: T[]): T[] {
+	var j, x, i;
+	for (i = a.length - 1; i > 0; i--) {
+		j = Math.floor(Math.random() * (i + 1));
+		x = a[i];
+		a[i] = a[j];
+		a[j] = x;
+	}
+	return a;
 }
 
 (async () => {
