@@ -27,27 +27,27 @@ function oneway<T>(): { read: () => Promise<T>; write: (v: T) => void } {
 }
 
 function intcode(input: string) {
-	let inputs = oneway<bigint>();
-	let outputs = oneway<bigint>();
+	let inputs = oneway<number>();
+	let outputs = oneway<number>();
 	let over = { over: false };
 
 	let done = (async () => {
-		let memory: bigint[] = input.split(",").map(w => BigInt(+w));
+		let memory: number[] = input.split(",").map(w => +w);
 		for (let i = 0; i < 10000; i++) {
-			memory.push(0n);
+			memory.push(0);
 		}
 		// editv && editv(memory);
-		let instructionPointer = 0n;
+		let instructionPointer = 0;
 
-		let relativeBase = 0n;
+		let relativeBase = 0;
 
 		let parameterModes: number[] = [];
-		let parameterIndex = 0n;
+		let parameterIndex = 0;
 
 		let exit = false;
 
-		let getMem = (v: bigint) => memory[Number(v)];
-		let setMem = (v: bigint, w: bigint) => (memory[Number(v)] = w);
+		let getMem = (v: number) => memory[Number(v)];
+		let setMem = (v: number, w: number) => (memory[Number(v)] = w);
 
 		let getPointer_ = () => {
 			let parameterMode = parameterModes[Number(parameterIndex)];
@@ -83,8 +83,6 @@ function intcode(input: string) {
 			"3": async () => {
 				let [out] = [p()];
 				let value = await inputs.read();
-				if (typeof value === "number") value = BigInt(value);
-				// ^ in case we ignore typescript errors
 				setMem(out, value);
 			},
 			"4": async () => {
@@ -93,27 +91,27 @@ function intcode(input: string) {
 			},
 			"5": async () => {
 				let [test, iftrue] = [v(), v()];
-				if (test !== 0n) {
+				if (test !== 0) {
 					instructionPointer = iftrue;
-					parameterIndex = 0n;
+					parameterIndex = 0;
 				}
 			},
 			"6": async () => {
 				let [test, iffalse] = [v(), v()];
-				if (test === 0n) {
+				if (test === 0) {
 					instructionPointer = iffalse;
-					parameterIndex = 0n;
+					parameterIndex = 0;
 				}
 			},
 			"7": async () => {
 				let [f, s, out] = [v(), v(), p()];
-				if (f < s) setMem(out, 1n);
-				else setMem(out, 0n);
+				if (f < s) setMem(out, 1);
+				else setMem(out, 0);
 			},
 			"8": async () => {
 				let [f, s, out] = [v(), v(), p()];
-				if (f === s) setMem(out, 1n);
-				else setMem(out, 0n);
+				if (f === s) setMem(out, 1);
+				else setMem(out, 0);
 			},
 			"9": async () => {
 				let [incrRelativeBy] = [v()];
@@ -125,7 +123,7 @@ function intcode(input: string) {
 		};
 
 		while (!exit) {
-			parameterIndex = 0n;
+			parameterIndex = 0;
 			parameterModes = [1];
 			let opcode = v();
 			let [e, d, c, b, a] = ("" + opcode).split("").reverse();
@@ -146,7 +144,7 @@ function intcode(input: string) {
 	return {
 		done,
 		read: async () => await outputs.read(),
-		write: (v: bigint | number) => inputs.write(BigInt(v)),
+		write: (v: number | number) => inputs.write(v),
 		over,
 	};
 
@@ -155,7 +153,7 @@ function intcode(input: string) {
 	// console.log("Done!", memory.join(",").replace(/(\,0)+$/, ""));
 }
 
-type nobi = number | bigint;
+type nobi = number | number;
 type Board<T> = {
 	get(x: nobi, y: nobi): T;
 	set(x: nobi, y: nobi, t: T): void;
@@ -287,7 +285,7 @@ function shuffle<T>(a: T[]): T[] {
 		let program = intcode(input);
 		program.write(1);
 		let result = await program.read();
-		if (result !== 2494485073n) {
+		if (result !== 2494485073) {
 			throw new Error("boost part 1 failed ()" + result);
 		}
 	}
@@ -296,7 +294,7 @@ function shuffle<T>(a: T[]): T[] {
 		let program = intcode(input);
 		program.write(2);
 		let result = await program.read();
-		if (result !== 44997n) {
+		if (result !== 44997) {
 			throw new Error("boost part 1 failed ()" + result);
 		}
 	}
