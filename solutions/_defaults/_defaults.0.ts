@@ -281,13 +281,25 @@ function shuffle<T>(a: T[]): T[] {
 (async () => {
 	let program = intcode(input);
 	let board = makeBoard("·");
-	let rl = ratelimit(25);
-	rl.do(() => board.print());
-	board.set(5, 6, "?");
-	rl.do(() => board.print());
-	await ms(50);
-	rl.do(() => board.print());
-	board.set(-3, -4, "!");
-	await ms(50);
-	rl.do(() => board.print(v => (v === "?" ? ")" : v)));
+	let rl = ratelimit(100);
+
+	{
+		let program = intcode(input);
+		program.write(1);
+		let result = await program.read();
+		if (result !== 2494485073n) {
+			throw new Error("boost part 1 failed ()" + result);
+		}
+	}
+
+	{
+		let program = intcode(input);
+		program.write(2);
+		let result = await program.read();
+		if (result !== 44997n) {
+			throw new Error("boost part 1 failed ()" + result);
+		}
+	}
+
+	console.log("all test ok.");
 })();
