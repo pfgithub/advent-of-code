@@ -26,12 +26,7 @@ function oneway<T>(): { read: () => Promise<T>; write: (v: T) => void } {
 	};
 }
 
-function intcode(
-	input: string,
-	// getInput /*: () => Promise<bigint>*/,
-	// writeOutput /*: (v: bigint) => void */,
-	// editv,
-) {
+function intcode(input: string) {
 	let inputs = oneway<bigint>();
 	let outputs = oneway<bigint>();
 	let over = { over: false };
@@ -151,7 +146,7 @@ function intcode(
 	return {
 		done,
 		read: async () => await outputs.read(),
-		write: (v: bigint) => inputs.write(v),
+		write: (v: bigint | number) => inputs.write(BigInt(v)),
 		over,
 	};
 
