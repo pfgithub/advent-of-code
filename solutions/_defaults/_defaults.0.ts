@@ -198,7 +198,7 @@ function makeBoard<T>(fill: T): Board<T> {
 					xmin: Number(x),
 					ymin: Number(y),
 					xmax: Number(x),
-					ymax: Number(x),
+					ymax: Number(y),
 				};
 			if (x < limits.xmin) limits.xmin = Number(x);
 			if (y < limits.ymin) limits.ymin = Number(y);
