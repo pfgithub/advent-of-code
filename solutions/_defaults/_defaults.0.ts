@@ -276,6 +276,18 @@ function shuffle<T>(a: T[]): T[] {
 	return a;
 }
 
+// function binarySearch(passFail: (input: number) => boolean) {
+// 	let prev = 1;
+// 	let current = 2;
+// 	let passes = passFail(current);
+// 	while (!passes) {
+// 		current *= 2;
+// 		prev *= 2;
+// 		passes = passFail(current);
+// 	}
+// 	while (current - prev > 1) {}
+// }
+
 (async () => {
 	let program = intcode(input);
 	let board = makeBoard("·");
