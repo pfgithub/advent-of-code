@@ -18,7 +18,7 @@ fs.mkdirSync(path.join(__dirname, "solutions", solnName));
 ].forEach((v, i) =>
 	fs.writeFileSync(
 		path.join(__dirname, "solutions", solnName, v),
-		i < 2 ? initialText : "",
+		v.endsWith(".ts") ? initialText : "",
 		"utf-8",
 	),
 );
