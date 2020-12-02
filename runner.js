@@ -45,7 +45,8 @@ const sandbox = {
 
 vm.createContext(sandbox);
 
-console.log("Compiling...");
+console.log("Compiling…");
+if(filecont.endsWith(".js")) {} //TODO
 babel.transform(
 	filecont,
 	{
