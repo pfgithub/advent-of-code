@@ -29,7 +29,8 @@ ${path.basename(filename).replace(/\.(?:js|ts)/, "")}
 ====================================`);
 
 const sandbox = {
-	input: inputcont.trim(),
+	input: inputcont,
+	lines: inputcont.trim().split("\n"),
 	output: undefined,
 	copy: text => (clipboardy.writeSync(text), text),
 	print: (...v) => console.log(...v),
@@ -46,26 +47,30 @@ const sandbox = {
 vm.createContext(sandbox);
 
 console.log("Compiling…");
-if(filecont.endsWith(".js")) {} //TODO
-babel.transform(
-	filecont,
-	{
-		filename: "day.tsx",
-		presets: ["@babel/preset-typescript"],
-		plugins: [
-			"@babel/plugin-syntax-bigint",
-			"@babel/plugin-transform-modules-commonjs",
-		],
-	},
-	(err, res) => {
-		if (err) {
-			throw err;
-		}
-		console.log("Compiled");
-		console.log("====================================");
-		vm.runInContext(res.code, sandbox);
-	},
-);
+const cb = (err, res) => {
+	if (err) {
+		throw err;
+	}
+	console.log("Compiled");
+	console.log("====================================");
+	vm.runInContext(res.code, sandbox);
+};
+if(filename.endsWith(".js")) {
+	cb(filecont, undefined);
+}else{
+	babel.transform(
+		filecont,
+		{
+			filename: "day.tsx",
+			presets: ["@babel/preset-typescript"],
+			plugins: [
+				"@babel/plugin-syntax-bigint",
+				"@babel/plugin-transform-modules-commonjs",
+			],
+		},
+		cb,
+	);
+}
 
 // console.log("====================================");
 // console.log(sandbox.output);

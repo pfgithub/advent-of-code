@@ -5,8 +5,6 @@ declare function copy(text: string): text;
 declare function print(text: string): undefined;
 */
 
-const lines = input.split("\n").filter(w => w);
-
 var valid = 0;
 for(const line of lines) {
 	let [l, c, r] = line.split(" ");
