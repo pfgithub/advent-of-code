@@ -5,6 +5,9 @@ let solnName = process.argv[3];
 
 const year = process.argv[2];
 
+if(!year) throw new Error("!year");
+if(!solnName) throw new Error("!solnName");
+
 let initialText = fs.readFileSync(
 	path.join(__dirname, year, "/solutions", "_defaults", "_defaults.0.ts"),
 );
