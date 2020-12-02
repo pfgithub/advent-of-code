@@ -56,7 +56,7 @@ const cb = (err, res) => {
 	vm.runInContext(res.code, sandbox);
 };
 if(filename.endsWith(".js")) {
-	cb(filecont, undefined);
+	cb(undefined, filecont);
 }else{
 	babel.transform(
 		filecont,
