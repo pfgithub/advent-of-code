@@ -3,7 +3,7 @@
 my adventofcode solutions and helper tool
 
 `yarn install`  
-`yarn go dayX` - get set up for a challenge  
+`yarn go 2020 dayX` - get set up for a challenge  
 `yarn watch` - start running code on save  
 `yarn prettierwatch` - format solution code on save
 

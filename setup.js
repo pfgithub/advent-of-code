@@ -1,13 +1,15 @@
 const fs = require("fs");
 const path = require("path");
 
-let solnName = process.argv[2];
+let solnName = process.argv[3];
+
+const year = process.argv[2];
 
 let initialText = fs.readFileSync(
-	path.join(__dirname, "solutions", "_defaults", "_defaults.0.ts"),
+	path.join(__dirname, year, "/solutions", "_defaults", "_defaults.0.ts"),
 );
 
-fs.mkdirSync(path.join(__dirname, "solutions", solnName));
+fs.mkdirSync(path.join(__dirname, year, "solutions", solnName));
 [
 	solnName + ".1.ts",
 	solnName + ".2.ts",
@@ -17,7 +19,7 @@ fs.mkdirSync(path.join(__dirname, "solutions", solnName));
 	solnName + ".txt",
 ].forEach((v, i) =>
 	fs.writeFileSync(
-		path.join(__dirname, "solutions", solnName, v),
+		path.join(__dirname, year, "solutions", solnName, v),
 		v.endsWith(".ts") ? initialText : "",
 		"utf-8",
 	),
