@@ -5,6 +5,8 @@ declare function copy(text: string): text;
 declare function print(text: string): undefined;
 */
 
+export {};
+
 const lines = input.split("\n").filter(w => w);
 
 var valid = 0;

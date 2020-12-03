@@ -5,6 +5,8 @@ declare function copy(text: string): text;
 declare function print(text: string): undefined;
 */
 
+export {};
+
 const map = lines.map(l => [...l]);
 
 const at = (x, y) => map[y][x % map[y].length];
