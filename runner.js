@@ -29,8 +29,9 @@ ${path.basename(filename).replace(/\.(?:js|ts)/, "")}
 ====================================`);
 
 const sandbox = {
-	input: inputcont,
+	input: inputcont.trim(),
 	lines: inputcont.trim().split("\n"),
+	dblines: inputcont.trim().split("\n\n").map(q => q.split("\n")),
 	output: undefined,
 	copy: text => (clipboardy.writeSync(text), text),
 	print: (...v) => console.log(...v),
