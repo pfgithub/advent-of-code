@@ -28,6 +28,8 @@ ${Math.random()} - ${new Date().getTime()}
 ${path.basename(filename).replace(/\.(?:js|ts)/, "")}
 ====================================`);
 
+const highlight = msg => "\x1b[31m"+msg+"\x1b(B\x1b[m";
+
 const sandbox = {
 	input: inputcont.trim(),
 	lines: inputcont.trim().split("\n"),
@@ -35,6 +37,8 @@ const sandbox = {
 	output: undefined,
 	copy: text => (clipboardy.writeSync(text), text),
 	print: (...v) => console.log(...v),
+	error: (...a) => {throw new Error(highlight(a.join(" ")))},
+	highlight,
 	console,
 	process,
 	require,
@@ -54,7 +58,11 @@ const cb = (err, res) => {
 	}
 	console.log("Compiled");
 	console.log("====================================");
-	vm.runInContext(res.code, sandbox);
+	try {
+		vm.runInContext(res.code, sandbox);
+	}catch(e) {
+		console.log(e.stack.replace(e.message, highlight(e.message)));
+	}
 };
 if(filename.endsWith(".js")) {
 	cb(undefined, filecont);

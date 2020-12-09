@@ -1,8 +1,7 @@
 /*
-declare let input: string;
-declare let output: any;
-declare function copy(text: string): text;
-declare function print(text: string): undefined;
+input: string, lines: string[], dblines: string[][]
+copy(text: string) → clipboard
+error(message: string) → thrown error
 */
 
 export {};
