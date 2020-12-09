@@ -1,0 +1,4 @@
+Open inspector network tab
+Go to https://adventofcode.com/2020/day/9/input
+Copy the cookie thing it should look like `session=[hex data]`
+Put the entire thing in a file called `cookie.txt` it should contain `session=[hex data]`
