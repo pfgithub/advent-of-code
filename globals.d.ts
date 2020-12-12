@@ -6,5 +6,8 @@ declare global{
 	function print<T>(i: T, ...r: any[]): T;
 	function copy(text: string): void;
 	function clearScreen(): void;
+	interface Number {
+		mod: (this: number, wrap: number) => number;
+	}
 }
 export {};

@@ -2,6 +2,7 @@
 input: string, lines: string[], dblines: string[][]
 copy(text: string) → clipboard
 error(message: string) → thrown error
+-5..mod(3) → @mod(-5, 3)
 */
 
 // Cardinals:

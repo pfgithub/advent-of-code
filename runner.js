@@ -48,6 +48,12 @@ const sandbox = {
 	exports: {},
 	clearScreen: () => process.stdout.write("\u001b[2J\u001b[0;0H"),
 };
+const js = (a) => a[0];
+const precode = js`
+Number.prototype.mod = function(n) {
+    return ((this%n)+n)%n;
+};
+`;
 
 vm.createContext(sandbox);
 
@@ -59,7 +65,7 @@ const cb = (err, res) => {
 	console.log("Compiled");
 	console.log("====================================");
 	try {
-		vm.runInContext(res.code, sandbox);
+		vm.runInContext(precode + "\n" + res.code, sandbox);
 	}catch(e) {
 		console.log(e.stack.replace(e.message, highlight(e.message)));
 	}
