@@ -64,11 +64,14 @@ const cb = (err, res) => {
 	}
 	console.log("Compiled");
 	console.log("====================================");
+	let start_time = Date.now();
 	try {
 		vm.runInContext(precode + "\n" + res.code, sandbox);
 	}catch(e) {
 		console.log(e.stack.replace(e.message, highlight(e.message)));
 	}
+	let total_ms = Date.now() - start_time;
+	console.log("\n\x1b[90mCompleted in "+total_ms+" ms.\x1b(B\x1b[m\x1b[A\x1b[A")
 };
 if(filename.endsWith(".js")) {
 	cb(undefined, filecont);
