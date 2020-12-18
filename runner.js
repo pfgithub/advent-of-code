@@ -10,7 +10,11 @@ const babel = require("@babel/core");
 // });
 
 const filename = process.argv[2];
-let txtName = filename.replace(/\.[0-9]+\.(?:js|ts)$/, ".txt");
+const fnsplit = filename.split("/");
+fnsplit.pop();
+const dayName = fnsplit[fnsplit.length - 1];
+
+let txtName = fnsplit.join("/")+"/"+dayName+".txt";
 const filecont = fs.readFileSync(path.resolve(filename), "utf-8");
 const inputcont = fs.readFileSync(path.resolve(txtName), "utf-8");
 
