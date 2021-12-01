@@ -87,3 +87,5 @@ function makeBoard<T>(fill: T): Board<T> {
 
 const board = makeBoard(0).dwth(b => b.set([3, 4], 5));
 board.print(a => " " + a).log();
+
+console.log([1, 2, 3].op([4, 5, 6], (a, b) => [a, b])); // zip zoop

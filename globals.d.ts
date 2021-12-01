@@ -36,8 +36,8 @@ declare global{
 		mul: <N extends number>(this: Vector<N, T>, other: Vector<N, number>) => Vector<N, number>,
 		div: <N extends number>(this: Vector<N, T>, other: Vector<N, number>) => Vector<N, number>,
 
-		op: <N extends number, B, C>(this: Vector<N, T>, other: Vector<N, B>, mix: (a: T, b: B, index: LowNumber, aarr: Vector<N, T>, barr: Vector<N, B>) => C) => Vector<N, C>,
-		mapt: <N extends number, R>(this: Vector<N, T>, each: (item: T, index: LowNumber, array: Vector<N, T>) => R) => Vector<N, R>,
+		op: <N extends number, B, C>(this: Vector<N, T>, other: Vector<N, B>, mix: (a: T, b: B, index: number, aarr: Vector<N, T>, barr: Vector<N, B>) => C) => Vector<N, C>,
+		mapt: <N extends number, R>(this: Vector<N, T>, each: (item: T, index: number, array: Vector<N, T>) => R) => Vector<N, R>,
 
 		x: T,
 		y: T,
