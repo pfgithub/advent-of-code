@@ -12,3 +12,6 @@ error(message: string) → thrown error
 
 export {};
 
+const practice = ``;
+
+// input = practice;

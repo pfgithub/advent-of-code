@@ -27,8 +27,14 @@ const practice = `199
 260
 263`;
 
-const res = input.trim().split("\n").map(w =>+ w).map((m, i, a) => nv(i, a));
-console.log(res);
-const rv = res.map((w, i, a) => w > a[i - 1]);
-rv.shift();
-console.log(rv.reduce((t, a) => t + +a, 0));
+input
+    .trim()
+    .split("\n")
+    .map(w =>+ w)
+    .map((m, i, a) => nv(i, a))
+    .dwth(log)
+    .map((w, i, a) => w > a[i - 1])
+    .dwth(a => a.shift())
+    .reduce((t, a) => t + +a, 0)
+    .dwth(log)
+;

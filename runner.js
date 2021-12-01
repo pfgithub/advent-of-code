@@ -57,6 +57,11 @@ const precode = js`
 Number.prototype.mod = function(n) {
     return ((this%n)+n)%n;
 };
+Object.defineProperty(Object.prototype, "dwth", {
+	enumerable: false,
+	value: function(cb) {cb(this); return this},
+});
+const log = console.log;
 `;
 
 vm.createContext(sandbox);
