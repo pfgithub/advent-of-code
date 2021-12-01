@@ -54,14 +54,33 @@ const sandbox = {
 };
 const js = (a) => a[0];
 const precode = js`
-Number.prototype.mod = function(n) {
-    return ((this%n)+n)%n;
-};
-Object.defineProperty(Object.prototype, "dwth", {
-	enumerable: false,
-	value: function(cb) {cb(this); return this},
-});
+function _defproto(thing, name, cb) {
+	Object.defineProperty(thing.prototype, name, {
+		enumerable: false,
+		value: function(...args) {return cb(this, ...args)},
+	});
+}
+_defproto(Object, "defproto", _defproto);
+
+Number.defproto("mod", (m, n) => ((m%n)+n)%n);
+Object.defproto("dwth", (me, cb) => (cb(me), me));
 const log = console.log;
+
+const point = pt => pt;
+Array.defproto("add", (a, b) => a.map((v, i) => v + b[i]));
+Array.defproto("sub", (a, b) => a.map((v, i) => v - b[i]));
+Array.defproto("mul", (a, b) => a.map((v, i) => v * b[i]));
+Array.defproto("div", (a, b) => a.map((v, i) => v / b[i]));
+Array.prototype.mapt = Array.prototype.map;
+for(const [index, name] of ["x", "y", "z", "a"].entries())
+Object.defineProperty(Array.prototype, name, {
+	enumerable: false,
+	get: function() {return this[index]},
+});
+
+let cardinals = [[1,0],[-1,0],[0,1],[0,-1]];
+let diagonals = [[-1,-1],[-1,1],[1,-1],[1,1]];
+let adjacents = [...cardinals, ...diagonals];
 `;
 
 vm.createContext(sandbox);
