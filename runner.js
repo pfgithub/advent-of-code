@@ -93,6 +93,9 @@ if(filename.endsWith(".js")) {
 			plugins: [
 				"@babel/plugin-syntax-bigint",
 				"@babel/plugin-transform-modules-commonjs",
+				["@babel/plugin-proposal-pipeline-operator", {
+					proposal: "minimal",
+				}],
 			],
 		},
 		cb,
