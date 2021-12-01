@@ -16,8 +16,7 @@ const nv = (i: number, a: number[]) => {
     return a[i] + a[i + 1] + a[i + 2];
 }
 
-let input_a;
-input_a = `199
+const practice = `199
 200
 208
 210
