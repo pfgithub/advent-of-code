@@ -64,13 +64,22 @@ _defproto(Object, "defproto", _defproto);
 
 Number.defproto("mod", (m, n) => ((m%n)+n)%n);
 Object.defproto("dwth", (me, cb) => (cb(me), me));
-const log = console.log;
+Object.defproto("log", me => me.dwth(log));
+const log = (...a) => {
+	console.log(...a.map(w => {
+		if(w instanceof Number) return +w;
+		if(w instanceof String) return ""+w;
+		return w;
+	}));
+};
 
-const point = pt => pt;
-Array.defproto("add", (a, b) => a.map((v, i) => v + b[i]));
-Array.defproto("sub", (a, b) => a.map((v, i) => v - b[i]));
-Array.defproto("mul", (a, b) => a.map((v, i) => v * b[i]));
-Array.defproto("div", (a, b) => a.map((v, i) => v / b[i]));
+const vec = (n, v) => v;
+Array.defproto("op", (a, b, cb) => a.map((v, i) => cb(v, b[i], i, a, b)));
+Array.defproto("add", (a, b) => a.op(b, (a, b) => a + b));
+Array.defproto("sub", (a, b) => a.op(b, (a, b) => a - b));
+Array.defproto("mul", (a, b) => a.op(b, (a, b) => a * b));
+Array.defproto("div", (a, b) => a.op(b, (a, b) => a / b));
+Array.defproto("mod", (a, b) => a.op(b, (a, b) => a.mod(b)));
 Array.prototype.mapt = Array.prototype.map;
 for(const [index, name] of ["x", "y", "z", "a"].entries())
 Object.defineProperty(Array.prototype, name, {

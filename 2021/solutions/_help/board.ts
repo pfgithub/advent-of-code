@@ -5,7 +5,7 @@ type Board<T> = {
 	set(pos: Point2D, t: T): void;
 	clear(): void;
 	forEach(visitor: (v: T, pos: Point2D) => void): void;
-	print(printer?: (v: T, pos: Point2D) => string | nobi): void;
+	print(printer?: (v: T, pos: Point2D) => string | nobi): string;
 	copy(): Board<T>;
 };
 function makeBoard<T>(fill: T): Board<T> {
@@ -21,8 +21,8 @@ function makeBoard<T>(fill: T): Board<T> {
 		get: (pos) => {
 			if (!limits) return fill;
 			if (
-                [pos, limits.min].mix((a, b) => a < b).some(w => w) ||
-                [pos, limits.max].mix((a, b) => a > b).some(w => w)
+                pos.op(limits.min, (a, b) => a < b).some(w => w) ||
+                pos.op(limits.max, (a, b) => a > b).some(w => w)
             ) return fill;
 			if (!board[pos.y]) return fill;
 			let bval = board[pos.y][pos.x];
@@ -30,10 +30,10 @@ function makeBoard<T>(fill: T): Board<T> {
 		},
 		set: (pos, v) => {
 			if (!limits) {
-				limits = {min: [...pos], max: [...pos]};
+				limits = {min: vec(2, pos), max: vec(2, pos)};
             }
-            limits.min = [pos, limits.min].mix((a, b) => Math.min(a, b));
-            limits.max = [pos, limits.min].mix((a, b) => Math.max(a, b));
+            limits.min = pos.op(limits.min, (a, b) => Math.min(a, b));
+            limits.max = pos.op(limits.max, (a, b) => Math.max(a, b));
 			if (!board[pos.y]) board[pos.y] = [];
 			board[pos.y][pos.x] = v;
 		},
@@ -50,33 +50,40 @@ function makeBoard<T>(fill: T): Board<T> {
 			reso.forEach((v, pos) => nb.set(pos, v));
 			return nb;
 		},
-		print: (printer = v => v as any) => {
+		print: (printer = v => v as any): string => {
 			// ratelimit print
-			if (!limits) return console.log("*no board to print*");
+			if (!limits) return "*no board to print*";
 			let ylength = 0;
 			for (let y = limits.min.y - 1; y <= limits.max.y + 1; y++) {
 				ylength = Math.max(y.toString().length, ylength);
 			}
-			console.log(
-				" ".repeat(ylength) +
-					" .-" +
-					"-".repeat(limits.max.x - limits.min.x + 3) +
-					"-.",
-			);
+			const resc: string[] = [];
+			let llen: number = limits.max.x - limits.min.x + 3;
 			for (let y = limits.min.y - 1; y <= limits.max.y + 1; y++) {
 				let line = "";
 				for (let x = limits.min.x - 1; x <= limits.max.x + 1; x++) {
 					line += printer(reso.get([x, y]), [x, y]);
 				}
-				console.log(y.toString().padStart(ylength, " ") + " | " + line + " |");
+				if(line.length > llen) llen = line.length;
+				resc.push(y.toString().padStart(ylength, " ") + " | " + line + " |");
 			}
-			console.log(
+			resc.unshift(
+				" ".repeat(ylength) +
+					" .-" +
+					"-".repeat(llen) +
+					"-. " + (limits.min.y - 1) + " .. " + (limits.max.y + 1),
+			);
+			resc.push(
 				" ".repeat(ylength) +
 					" '-" +
-					"-".repeat(limits.max.x - limits.min.x + 3) +
+					"-".repeat(llen) +
 					"-'",
 			);
+			return resc.join("\n");
 		},
 	};
 	return reso;
 }
+
+const board = makeBoard(0).dwth(b => b.set([3, 4], 5));
+board.print(a => " " + a).log();

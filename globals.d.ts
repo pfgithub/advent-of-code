@@ -13,27 +13,39 @@ declare global{
 	}
 	interface Object {
 		dwth: <T>(this: T, cb: (v: T) => unknown) => T;
+		log: <T>(this: T) => T;
 	}
 
-	type Point2D = [number, number];
-	type Point3D = [number, number, number];
-	type Point4D = [number, number, number, number];
-	type PointND = Point2D | Point3D | Point4D;
+	type Vector<N extends number, T> = (
+		N extends N ? number extends N ? T[] : _TupleOf<T, N, []> : never
+	) & {__is_vector?: never | N};
+	type _TupleOf<T, N extends number, R extends unknown[]> = R['length'] extends N ? R : _TupleOf<T, N, [T, ...R]>;
+
+	type Point2D = Vector<2, number>;
+	type Point3D = Vector<3, number>;
+	type Point4D = Vector<4, number>;
+
+	type LowNumber = 1 | 2 | 3 | 4 | 5 | 6 | 7;
+
+	// type InferLen<V extends Vector<LowNumber, unknown>> = V extends Vector<infer U, unknown> ? U : never;
+	type InferLen<V extends Vector<LowNumber, unknown>> = V["__is_vector"];
 
 	interface Array<T> {
-		add: <N extends PointND>(this: N, other: N) => N,
-		sub: <N extends PointND>(this: N, other: N) => N,
-		mul: <N extends PointND>(this: N, other: N) => N,
-		div: <N extends PointND>(this: N, other: N) => N,
-		// op: <N extends PointND, W>(this: N, other: N, mix: (a: N, b: M) => W) => W[],
-		mapt: <N extends PointND>(this: N, each: (item: N[number], index: number, array: N) => N[number]) => N,
+		add: <N extends LowNumber>(this: Vector<N, T>, other: Vector<N, number>) => Vector<N, number>,
+		sub: <N extends LowNumber>(this: Vector<N, T>, other: Vector<N, number>) => Vector<N, number>,
+		mul: <N extends LowNumber>(this: Vector<N, T>, other: Vector<N, number>) => Vector<N, number>,
+		div: <N extends LowNumber>(this: Vector<N, T>, other: Vector<N, number>) => Vector<N, number>,
+
+		op: <N extends LowNumber, B, C>(this: Vector<N, T>, other: Vector<N, B>, mix: (a: T, b: B, index: LowNumber, aarr: Vector<N, T>, barr: Vector<N, B>) => C) => Vector<N, C>,
+		mapt: <N extends LowNumber, R>(this: Vector<N, T>, each: (item: T, index: LowNumber, array: Vector<N, T>) => R) => Vector<N, R>,
 
 		x: T,
 		y: T,
 		z: T,
 		a: T,
 	}
-	function point<T extends PointND>(pt: T): T;
+	// function point<T extends Vector<LowNumber, number>>(pt: T): T;
+	function vec<N extends LowNumber, U>(n: N, v: Vector<N, U>): Vector<N, U>;
 
 	let cardinals: Point2D[];
 	let diagonals: Point2D[];
