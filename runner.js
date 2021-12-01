@@ -64,6 +64,7 @@ _defproto(Object, "defproto", _defproto);
 
 Number.defproto("mod", (m, n) => ((m%n)+n)%n);
 Object.defproto("dwth", (me, cb) => (cb(me), me));
+Object.defproto("use", (me, cb) => cb(me));
 Object.defproto("log", me => me.dwth(log));
 const log = (...a) => {
 	console.log(...a.map(w => {

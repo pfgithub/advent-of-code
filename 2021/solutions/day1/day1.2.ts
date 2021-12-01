@@ -30,4 +30,6 @@ const c: (typeof d)["__is_vector"] = 3;
 // @ts-expect-error
 const e: InferLen<typeof d> = 4;
 
-(-1).mod(3).dwth(log)
+(-1).mod(3).dwth(log);
+
+[1, 2, 3].use(av => [av, "hi"]).dwth(log);
