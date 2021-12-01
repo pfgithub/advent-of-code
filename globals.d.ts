@@ -31,13 +31,13 @@ declare global{
 	type InferLen<V extends Vector<LowNumber, unknown>> = V["__is_vector"];
 
 	interface Array<T> {
-		add: <N extends LowNumber>(this: Vector<N, T>, other: Vector<N, number>) => Vector<N, number>,
-		sub: <N extends LowNumber>(this: Vector<N, T>, other: Vector<N, number>) => Vector<N, number>,
-		mul: <N extends LowNumber>(this: Vector<N, T>, other: Vector<N, number>) => Vector<N, number>,
-		div: <N extends LowNumber>(this: Vector<N, T>, other: Vector<N, number>) => Vector<N, number>,
+		add: <N extends number>(this: Vector<N, T>, other: Vector<N, number>) => Vector<N, number>,
+		sub: <N extends number>(this: Vector<N, T>, other: Vector<N, number>) => Vector<N, number>,
+		mul: <N extends number>(this: Vector<N, T>, other: Vector<N, number>) => Vector<N, number>,
+		div: <N extends number>(this: Vector<N, T>, other: Vector<N, number>) => Vector<N, number>,
 
-		op: <N extends LowNumber, B, C>(this: Vector<N, T>, other: Vector<N, B>, mix: (a: T, b: B, index: LowNumber, aarr: Vector<N, T>, barr: Vector<N, B>) => C) => Vector<N, C>,
-		mapt: <N extends LowNumber, R>(this: Vector<N, T>, each: (item: T, index: LowNumber, array: Vector<N, T>) => R) => Vector<N, R>,
+		op: <N extends number, B, C>(this: Vector<N, T>, other: Vector<N, B>, mix: (a: T, b: B, index: LowNumber, aarr: Vector<N, T>, barr: Vector<N, B>) => C) => Vector<N, C>,
+		mapt: <N extends number, R>(this: Vector<N, T>, each: (item: T, index: LowNumber, array: Vector<N, T>) => R) => Vector<N, R>,
 
 		x: T,
 		y: T,
