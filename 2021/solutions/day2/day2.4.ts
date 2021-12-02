@@ -21,12 +21,12 @@ forward 2`;
 
 const inv = input;
 
-let pos = vec(2, [0, 0]);
+let pos = vec(0, 0);
 let aim = 0;
 
 inv.trim().split("\n").map(w => w.split(" ")).forEach(([dir, cntv]) => {
     const cnt = +cntv;
-    if(dir === "forward") pos = pos.add(vec(2, [cnt, aim * cnt]));
+    if(dir === "forward") pos = pos.add(vec(cnt, aim * cnt));
     if(dir === "up") aim -= cnt;
     if(dir === "down") aim += cnt;
 });

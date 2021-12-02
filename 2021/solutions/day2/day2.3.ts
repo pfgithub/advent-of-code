@@ -21,7 +21,7 @@ forward 2`;
 
 const inv = input;
 
-let pos = vec(2, [0, 0]);
+let pos = vec(0, 0);
 
 inv.trim().split("\n").map(w => w.split(" ")).forEach(([dir, cntv]) => {
     const cnt = +cntv;

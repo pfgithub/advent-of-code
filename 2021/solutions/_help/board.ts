@@ -30,7 +30,7 @@ function makeBoard<T>(fill: T): Board<T> {
 		},
 		set: (pos, v) => {
 			if (!limits) {
-				limits = {min: vec(2, pos), max: vec(2, pos)};
+				limits = {min: dupe(pos), max: dupe(pos)};
             }
             limits.min = pos.op(limits.min, (a, b) => Math.min(a, b));
             limits.max = pos.op(limits.max, (a, b) => Math.max(a, b));

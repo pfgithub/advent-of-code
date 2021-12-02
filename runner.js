@@ -74,7 +74,8 @@ const log = (...a) => {
 	}));
 };
 
-const vec = (n, v) => v;
+const vec = (...a) => a.flat();
+const dupe = (a) => [...a];
 Array.defproto("op", (a, b, cb) => a.map((v, i) => cb(v, b[i], i, a, b)));
 Array.defproto("add", (a, b) => a.op(b, (a, b) => a + b));
 Array.defproto("sub", (a, b) => a.op(b, (a, b) => a - b));
