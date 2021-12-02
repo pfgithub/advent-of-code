@@ -38,3 +38,5 @@ inv.trim().split("\n").map(w => w.split(" ")).forEach(([dir, cntv]) => {
 (hp * dp).dwth(log)
 
 // input = practice;
+
+// TODO expect = 1698850445;
