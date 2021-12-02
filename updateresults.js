@@ -30,6 +30,7 @@ async function runfor(year) {
     const timesonlb = inv.reduce((t, a) => t + +!! a.pts + +!! a.pts2, 0);
     const lb_attempts = inv.reduce((t, a) => t + (
         year === "2020" && a.day === 1 ? 0
+        : year === "2021" && a.day === 1 ? 0
         : + (a.time.split(":").length === 3) + + (a.time2.split(":").length === 3)
     ), 0);
 

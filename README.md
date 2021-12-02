@@ -7,7 +7,7 @@
 ### 2021
 
 Total Score: 0  
-Times On Leaderboard: 0 / 2 (~0%)
+Times On Leaderboard: 0 / 0 (~NaN%)
 
 | Day |     Time |  Rank | Score |     Time |  Rank | Score |
 | --: | -------: | ----: | ----: | -------: | ----: | ----: |
