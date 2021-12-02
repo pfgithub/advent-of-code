@@ -7,7 +7,8 @@
 ### 2021
 
 Total Score: 0  
-Times On Leaderboard: 0 / 0 (~NaN%)
+Times On Leaderboard: 0 / 0 (~NaN%)  
+Highest Leaderboard Position: 26961ᵗʰ place
 
 | Day |     Time |  Rank | Score |     Time |  Rank | Score |
 | --: | -------: | ----: | ----: | -------: | ----: | ----: |
@@ -16,7 +17,8 @@ Times On Leaderboard: 0 / 0 (~NaN%)
 ### 2020
 
 Total Score: 419  
-Times On Leaderboard: 11 / 48 (~23%)
+Times On Leaderboard: 11 / 48 (~23%)  
+Highest Leaderboard Position: 24ᵗʰ place
 
 | Day |     Time |  Rank | Score |     Time |  Rank | Score |
 | --: | -------: | ----: | ----: | -------: | ----: | ----: |
@@ -49,7 +51,8 @@ Times On Leaderboard: 11 / 48 (~23%)
 ### 2019
 
 Total Score: NaN  
-Times On Leaderboard: 4 / 34 (~12%)
+Times On Leaderboard: 4 / 34 (~12%)  
+Highest Leaderboard Position: 34ᵗʰ place
 
 | Day |     Time |  Rank | Score |     Time |  Rank | Score |
 | --: | -------: | ----: | ----: | -------: | ----: | ----: |
@@ -75,6 +78,18 @@ Times On Leaderboard: 4 / 34 (~12%)
 |   3 |  &gt;24h | 28557 |       |  &gt;24h | 24730 |       |
 |   2 |  &gt;24h | 46871 |       |  &gt;24h | 42245 |       |
 |   1 |  &gt;24h | 66740 |       |  &gt;24h | 58986 |       |
+
+### 2018
+
+Total Score: NaN  
+Times On Leaderboard: 0 / 4 (~0%)  
+Highest Leaderboard Position: 555ᵗʰ place
+
+| Day |     Time |  Rank | Score |     Time |  Rank | Score |
+| --: | -------: | ----: | ----: | -------: | ----: | ----: |
+|   3 |  &gt;24h | 18294 |       |        - |   NaN |       |
+|   2 | 00:07:56 |   555 |       | 00:18:28 |   646 |       |
+|   1 | 10:49:46 | 13752 |       | 11:17:06 | 10758 |       |
 
 <!-- end-results -->
 

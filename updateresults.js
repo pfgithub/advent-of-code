@@ -39,7 +39,9 @@ async function runfor(year) {
         + "\n"
         + "Total Score: " + (inv.reduce((t, a) => t + a.pts + a.pts2, 0)) + "  \n"
         + "Times On Leaderboard: " + (timesonlb) + " / "+(lb_attempts)+" (~"
-            + (timesonlb / lb_attempts).toLocaleString(undefined, {style: "percent"}) + ")"+"\n"
+            + (timesonlb / lb_attempts).toLocaleString(undefined, {style: "percent"}) + ")"+"  \n"
+        + "Highest Leaderboard Position: " + (inv.reduce((t, a) => Math.min(t, a.pos, a.pos2 || Infinity), Infinity))
+            + "ᵗʰ place\n"
         + "\n"
         + "| Day |      Time  |  Rank  | Score  |      Time  |  Rank  | Score  |\n"
         + "| -:  |      -:    |  -:    | -:     |      -:    |  -:    | -:     |\n"
@@ -60,6 +62,7 @@ async function main() {
         runfor("2021"),
         runfor("2020"),
         runfor("2019"),
+        runfor("2018"),
     ]);
 
     const rt = ""
