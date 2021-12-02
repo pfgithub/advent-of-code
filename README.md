@@ -6,12 +6,13 @@
 
 ### 2021
 
-Total Score: 0  
-Times On Leaderboard: 0 / 0 (~NaN%)  
-Highest Leaderboard Position: 26961ᵗʰ place
+Total Score: 39  
+Times On Leaderboard: 1 / 2 (~50%)  
+Highest Leaderboard Position: 62ᵗʰ place
 
 | Day |     Time |  Rank | Score |     Time |  Rank | Score |
 | --: | -------: | ----: | ----: | -------: | ----: | ----: |
+|   2 | 00:01:50 |   178 |       | 00:02:41 |    62 |    39 |
 |   1 | 04:58:45 | 31867 |       | 05:02:40 | 26961 |       |
 
 ### 2020
