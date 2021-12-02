@@ -23,16 +23,12 @@ const inv = input;
 
 let hp = 0;
 let dp = 0;
-let aim = 0;
 
 inv.trim().split("\n").map(w => w.split(" ")).forEach(([dir, cntv]) => {
     const cnt = +cntv;
-    if(dir === "forward") {
-        hp += cnt;
-        dp += aim * cnt;
-    }
-    if(dir === "up") aim -= cnt;
-    if(dir === "down") aim += cnt;
+    if(dir === "forward") dp += cnt;
+    if(dir === "up") hp -= cnt;
+    if(dir === "down") hp += cnt;
 });
 
 (hp * dp).dwth(log)
