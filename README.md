@@ -16,7 +16,7 @@ Times On Leaderboard: 0 / 2 (~0%)
 ### 2020
 
 Total Score: 419  
-Times On Leaderboard: 11 / 50 (~22%)
+Times On Leaderboard: 11 / 48 (~23%)
 
 | Day |     Time |  Rank | Score |     Time |  Rank | Score |
 | --: | -------: | ----: | ----: | -------: | ----: | ----: |
@@ -49,7 +49,7 @@ Times On Leaderboard: 11 / 50 (~22%)
 ### 2019
 
 Total Score: NaN  
-Times On Leaderboard: 4 / 44 (~9%)
+Times On Leaderboard: 4 / 34 (~12%)
 
 | Day |     Time |  Rank | Score |     Time |  Rank | Score |
 | --: | -------: | ----: | ----: | -------: | ----: | ----: |

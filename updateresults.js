@@ -6,16 +6,17 @@ const fetch = require("node-fetch");
 const cookietext = fs.readFileSync(path.join(__dirname, "cookie.txt"));
 
 async function runfor(year) {
+    /** @type {string} */
     const input_text = (await (await fetch("https://adventofcode.com/"+year+"/leaderboard/self", {
         headers: {"Cookie": cookietext},
     })).text()).match(/oard-daydesc-both">    Time   Rank  Score<\/span>([^<]+?)<\/pre>/)[1].trim();
 
     const inv = input_text.split("\n").map(l => l.trim().split(/ +/g))
-        .map(([num, time, pos, pts, time2, pos2, pts2]) => ({num: +num, time, pos: +pos, pts: +pts, time2, pos2: +pos2, pts2: +pts2}))
+        .map(([day, time, pos, pts, time2, pos2, pts2]) => ({day: +day, time, pos: +pos, pts: +pts, time2, pos2: +pos2, pts2: +pts2}))
     ;
     const txtv = inv
         .map(v => {
-            return "| " + ("" + v.num).padStart(3, " ") +
+            return "| " + ("" + v.day).padStart(3, " ") +
             " | " + v.time.padStart(10, " ") +
             " | " + ("" + v.pos).padStart(6, " ") +
             " | " + (v.pts ? "" + v.pts : "").padStart(6, " ") +
@@ -26,14 +27,18 @@ async function runfor(year) {
         .join("\n")
     ;
 
-    const timesonlb = inv.reduce((t, a) => t + +!!a.pts + +!!a.pts2, 0);
+    const timesonlb = inv.reduce((t, a) => t + +!! a.pts + +!! a.pts2, 0);
+    const lb_attempts = inv.reduce((t, a) => t + (
+        year === "2020" && a.day === 1 ? 0
+        : + (a.time.split(":").length === 3) + + (a.time2.split(":").length === 3)
+    ), 0);
 
     const res = ""
         + "### "+year+"\n"
         + "\n"
         + "Total Score: " + (inv.reduce((t, a) => t + a.pts + a.pts2, 0)) + "  \n"
-        + "Times On Leaderboard: " + (timesonlb) + " / "+(inv.length * 2)+" (~"
-            + (timesonlb / (inv.length * 2)).toLocaleString(undefined, {style: "percent"}) + ")"+"\n"
+        + "Times On Leaderboard: " + (timesonlb) + " / "+(lb_attempts)+" (~"
+            + (timesonlb / lb_attempts).toLocaleString(undefined, {style: "percent"}) + ")"+"\n"
         + "\n"
         + "| Day |      Time  |  Rank  | Score  |      Time  |  Rank  | Score  |\n"
         + "| -:  |      -:    |  -:    | -:     |      -:    |  -:    | -:     |\n"
