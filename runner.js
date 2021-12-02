@@ -82,11 +82,13 @@ Array.defproto("mul", (a, b) => a.op(b, (a, b) => a * b));
 Array.defproto("div", (a, b) => a.op(b, (a, b) => a / b));
 Array.defproto("mod", (a, b) => a.op(b, (a, b) => a.mod(b)));
 Array.prototype.mapt = Array.prototype.map;
-for(const [index, name] of ["x", "y", "z", "a"].entries())
-Object.defineProperty(Array.prototype, name, {
-	enumerable: false,
-	get: function() {return this[index]},
-});
+for(const [index, name] of ["x", "y", "z", "a"].entries()) {
+	Object.defineProperty(Array.prototype, name, {
+		enumerable: false,
+		get: function() {return this[index]},
+		set: function(v) {this[index] = v},
+	});
+}
 
 let cardinals = [[1,0],[-1,0],[0,1],[0,-1]];
 let diagonals = [[-1,-1],[-1,1],[1,-1],[1,1]];
