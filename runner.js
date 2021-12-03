@@ -96,20 +96,8 @@ let diagonals = [[-1,-1],[-1,1],[1,-1],[1,1]];
 let adjacents = [...cardinals, ...diagonals];
 
 function range(...a) {
-	// code courtesy of github copilot
-	// i had no idea array.from has a length option and accepts a fill parameter
-	// that's much nicer than new Array(len).fill(0).map((_, i) => i)
-	// also copilot is the reason length 1 and length 2 are in seperate things
-	if(a.length == 1) {
-		const [start, end] = [0, a[0]];
-		return Array.from({length: end - start}, (_, i) => i + start);
-	}else if(a.length == 2) {
-		const [start, end] = a;
-		return Array.from({length: end - start}, (_, i) => i + start);
-	}else if(a.length == 3) {
-		const [start, end, step] = a;
-		return Array.from({length: Math.ceil((end - start) / step)}, (_, i) => i * step + start);
-	}
+	const [start, end, step] = (a.length === 1 ? [0, a[0], 1] : a.length === 2 ? [...a, 1] : a);
+	return Array.from({length: Math.ceil((end - start) / step)}, (_, i) => i * step + start);
 }
 `;
 
