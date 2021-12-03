@@ -121,3 +121,9 @@ open 3-4 terminal windows
 - accidental infinite loops will be killed by re-saving the code
 - code may run twice because of prettier
 - your input will be loaded into `dayX.txt`, read it from the `input` variable (as a string, trimmed automatically) or from `lines`, pre-split by `\n`, or from dblines, pre-split by `\n\n` and then by `\n`
+
+## something to consider
+
+- consider making a file scratchpad.ts
+- yarn go will stay open and you can press enter at any time to commit the scratchpad to a real file
+- just to eliminate that "find the right file, copy/paste" thing and not make like day3.1 day3.2 day3.3 and all that
