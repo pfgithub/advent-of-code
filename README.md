@@ -9,6 +9,7 @@
 Total Score: 39  
 Times On Leaderboard: 1 / 4 (~25%)  
 Highest Leaderboard Position: 62ᵗʰ place
+Best Day was Day 2: 39 points, #178/#62
 
 | Day |     Time |  Rank | Score |     Time |  Rank | Score |
 | --: | -------: | ----: | ----: | -------: | ----: | ----: |
@@ -21,6 +22,7 @@ Highest Leaderboard Position: 62ᵗʰ place
 Total Score: 419  
 Times On Leaderboard: 11 / 48 (~23%)  
 Highest Leaderboard Position: 24ᵗʰ place
+Best Day was Day 3: 100 points, #69/#33
 
 | Day |     Time |  Rank | Score |     Time |  Rank | Score |
 | --: | -------: | ----: | ----: | -------: | ----: | ----: |
@@ -53,8 +55,9 @@ Highest Leaderboard Position: 24ᵗʰ place
 ### 2019
 
 Total Score: NaN  
-Times On Leaderboard: 4 / 34 (~12%)  
+Times On Leaderboard: 4 / 32 (~13%)  
 Highest Leaderboard Position: 34ᵗʰ place
+Best Day was Day 10: 115 points, #53/#34
 
 | Day |     Time |  Rank | Score |     Time |  Rank | Score |
 | --: | -------: | ----: | ----: | -------: | ----: | ----: |
@@ -86,6 +89,7 @@ Highest Leaderboard Position: 34ᵗʰ place
 Total Score: NaN  
 Times On Leaderboard: 0 / 4 (~0%)  
 Highest Leaderboard Position: 555ᵗʰ place
+Best Day was Day -1: 0 points, #undefined/#undefined
 
 | Day |     Time |  Rank | Score |     Time |  Rank | Score |
 | --: | -------: | ----: | ----: | -------: | ----: | ----: |
