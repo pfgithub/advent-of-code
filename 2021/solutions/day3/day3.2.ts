@@ -34,7 +34,7 @@ const itms = input.trim().split('\n');
 
 let res = [...itms];
 let ares = [...itms];
-for(let i = 0; i < itms[0].length; i++) {
+range(itms[0].length).map(i => {
     let zeros = 0;
     let ones = 0;
 
@@ -62,7 +62,7 @@ for(let i = 0; i < itms[0].length; i++) {
     } else {
         if(ares.length !== 1) ares = ares.filter(v => v[i] === "1");
     }
-};
+})
 
 
 const arat = parseInt(res[0], 2);

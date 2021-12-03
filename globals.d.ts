@@ -60,6 +60,10 @@ declare global{
 	function vec<U>(a: Vector<4, U>, v: U): Vector<5, U>;
 	function dupe<U extends unknown[]>(v: U): U;
 
+	function range(end: number): number[];
+	function range(start: number, end: number): number[];
+	function range(start: number, end: number, step: number): number[];
+
 	let cardinals: Point2D[];
 	let diagonals: Point2D[];
 	let adjacents: Point2D[];

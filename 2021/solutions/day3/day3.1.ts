@@ -32,8 +32,8 @@ const practice = `
 const itms = input.trim().split('\n');
 
 
-let res = [];
-for(let i = 0; i < itms[0].length; i++) {
+let res: number[] = [];
+range(itms[0].length).map(i => {
     let zeros = 0;
     let ones = 0;
     itms.forEach(cv => {
@@ -43,7 +43,7 @@ for(let i = 0; i < itms[0].length; i++) {
     })
     if(zeros > ones) res.push(0);
     else res.push(1);
-};
+});
 
 const ares = res.map(w => 1 - w);
 
