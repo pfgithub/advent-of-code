@@ -1,11 +1,12 @@
 {
 	"scripts": {
-		"watch": "onchange --kill */solutions/\\*\\*/\\*.{js,ts} -- node runner.js '{{changed}}'",
+		"watch": "onchange --kill */solutions/\\*\\*/\\*.{js,ts} -- ./node_modules/.bin/esno '{{changed}}'",
 		"prettierwatch": "onchange */solutions/\\*\\*/\\*.{js,ts,md,json} \\*.{js,md,json} -- prettier --write '{{changed}}'",
 		"go": "node setup.js"
 	},
 	"dependencies": {
-		"clipboardy": "^2.1.0"
+		"clipboardy": "^2.1.0",
+		"esno": "^0.12.1"
 	},
 	"devDependencies": {
 		"@babel/core": "^7.7.5",

@@ -14,7 +14,6 @@ declare global{
 	interface Object {
 		dwth: <T>(this: T, cb: (v: T) => unknown) => T;
 		use: <T, U>(this: T, cb: (v: T) => U) => U;
-		log: <T>(this: T) => T;
 	}
 
 	type Vector<N extends number, T> = (

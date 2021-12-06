@@ -1,3 +1,5 @@
+import {fhmain} from "../../../src/fheader";
+fhmain(__filename);
 /*
 input: string, lines: string[], dblines: string[][]
 copy(text: string) → clipboard
@@ -13,5 +15,7 @@ error(message: string) → thrown error
 export {};
 
 const practice = ``;
-
 // input = practice;
+input = input.trim();
+
+// input.
