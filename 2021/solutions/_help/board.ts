@@ -1,3 +1,5 @@
+import {fhmain} from "../../../src/fheader";
+fhmain(__filename);
 
 type nobi = number | bigint;
 type Board<T> = {
@@ -85,7 +87,7 @@ function makeBoard<T>(fill: T): Board<T> {
 	return reso;
 }
 
-const board = makeBoard(0).dwth(b => b.set([3, 4], 5));
-board.print(a => " " + a).log();
+const demoboard = makeBoard(0).dwth(b => b.set([3, 4], 5));
+demoboard.print(a => " " + a).dwth(log);
 
 console.log([1, 2, 3].op([4, 5, 6], (a, b) => [a, b])); // zip zoop
