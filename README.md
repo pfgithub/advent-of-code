@@ -13,6 +13,7 @@ Best Day was Day 2: 39 points, #178/#62
 
 | Day |     Time |  Rank | Score |     Time |  Rank | Score |
 | --: | -------: | ----: | ----: | -------: | ----: | ----: |
+|   5 | 18:54:29 | 48349 |       | 18:56:16 | 45151 |       |
 |   4 | 00:09:35 |   172 |       | 00:15:19 |   273 |       |
 |   3 | 00:03:42 |   178 |       | 00:13:24 |   276 |       |
 |   2 | 00:01:50 |   178 |       | 00:02:41 |    62 |    39 |
@@ -108,6 +109,7 @@ my adventofcode solutions and helper tool
 `yarn go 2020 X` - get set up for a challenge  
 `yarn watch` - start running code on save  
 `yarn prettierwatch` - format solution code on save
+`node updateresults.js` - update readme.md results section
 
 how to use:
 

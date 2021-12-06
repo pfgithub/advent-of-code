@@ -32,6 +32,7 @@ async function runfor(year) {
         year === "2020" && a.day === 1 ? 0
         : year === "2021" && a.day === 1 ? 0
         : year === "2019" && a.day === 5 ? 0
+        : year === "2021" && a.day === 5 ? 0
         : + (a.time.split(":").length === 3) + + (a.time2.split(":").length === 3)
     ), 0);
     const bestday = inv.reduce((t, a) => a.pts + a.pts2 > t.pts + t.pts2 ? a : t, {day: -1, pts: 0, pts2: 0});
