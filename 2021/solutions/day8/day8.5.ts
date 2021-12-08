@@ -19,7 +19,3 @@ const practice = ``;
 input = input.trim();
 
 // input.
-
-// hi! i'm glad you're excited to code
-// but consider fully reading the problem statement first.
-// Sincerely, future you.
