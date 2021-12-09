@@ -6,10 +6,11 @@
 
 ### 2021
 
-Total Score: 52  
-Times On Leaderboard: 2 / 14 (~14%)  
-Highest Leaderboard Position: 62ᵗʰ place
-Best Day was Day 2: 39 points, #178/#62
+- Total Score: 52
+- Times On Leaderboard: 2 / 14 (~14%)
+- Best Leaderboard Position: 62ᵗʰ place
+- Worst Leaderboard Position: 1688ᵗʰ place
+- Best Day was Day 2: 39 points, #178/#62
 
 | Day |     Time | Rank | Score |     Time | Rank | Score |
 | --: | -------: | ---: | ----: | -------: | ---: | ----: |
@@ -25,10 +26,11 @@ Best Day was Day 2: 39 points, #178/#62
 
 ### 2020
 
-Total Score: 419  
-Times On Leaderboard: 11 / 48 (~23%)  
-Highest Leaderboard Position: 24ᵗʰ place
-Best Day was Day 3: 100 points, #69/#33
+- Total Score: 419
+- Times On Leaderboard: 11 / 48 (~23%)
+- Best Leaderboard Position: 24ᵗʰ place
+- Worst Leaderboard Position: 5076ᵗʰ place
+- Best Day was Day 3: 100 points, #69/#33
 
 | Day |     Time | Rank | Score |     Time | Rank | Score |
 | --: | -------: | ---: | ----: | -------: | ---: | ----: |
@@ -60,10 +62,11 @@ Best Day was Day 3: 100 points, #69/#33
 
 ### 2019
 
-Total Score: 212  
-Times On Leaderboard: 4 / 32 (~13%)  
-Highest Leaderboard Position: 34ᵗʰ place
-Best Day was Day 10: 115 points, #53/#34
+- Total Score: 212
+- Times On Leaderboard: 4 / 32 (~13%)
+- Best Leaderboard Position: 34ᵗʰ place
+- Worst Leaderboard Position: 1601ᵗʰ place
+- Best Day was Day 10: 115 points, #53/#34
 
 | Day |     Time | Rank | Score |     Time | Rank | Score |
 | --: | -------: | ---: | ----: | -------: | ---: | ----: |
@@ -92,16 +95,17 @@ Best Day was Day 10: 115 points, #53/#34
 
 ### 2018
 
-Total Score: 0  
-Times On Leaderboard: 0 / 4 (~0%)  
-Highest Leaderboard Position: 555ᵗʰ place
-Best Day was Day -1: 0 points, #undefined/#undefined
+- Total Score: 0
+- Times On Leaderboard: 0 / 2 (~0%)
+- Best Leaderboard Position: 555ᵗʰ place
+- Worst Leaderboard Position: 646ᵗʰ place
+- Best Day was Day -1: 0 points, #undefined/#undefined
 
-| Day |     Time |  Rank | Score |     Time |  Rank | Score |
-| --: | -------: | ----: | ----: | -------: | ----: | ----: |
-|   3 |      n/a |   --- |       |      n/a |   --- |       |
-|   2 | 00:07:56 |   555 |       | 00:18:28 |   646 |       |
-|   1 | 10:49:46 | 13752 |       | 11:17:06 | 10758 |       |
+| Day |     Time | Rank | Score |     Time | Rank | Score |
+| --: | -------: | ---: | ----: | -------: | ---: | ----: |
+|   3 |      n/a |  --- |       |      n/a |  --- |       |
+|   2 | 00:07:56 |  555 |       | 00:18:28 |  646 |       |
+|   1 |      n/a |  --- |       |      n/a |  --- |       |
 
 <!-- end-results -->
 

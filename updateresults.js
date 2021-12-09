@@ -18,9 +18,12 @@ async function runfor(year) {
         year === "2020" && a.day === 1 ? false
         : year === "2021" && a.day === 1 ? false
         : year === "2019" && a.day === 5 ? false
+        : year === "2018" && a.day === 1 ? false
         : year === "2021" && a.day === 5 ? false
         : a.time.split(":").length === 3 && a.time2.split(":").length === 3
     );
+
+    const attemptsonly = inv.filter(attemptedlb);
 
     const txtv = inv
         .map(v => {
@@ -45,12 +48,14 @@ async function runfor(year) {
     const res = ""
         + "### "+year+"\n"
         + "\n"
-        + "Total Score: " + (inv.reduce((t, a) => t + a.pts + (a.pts2 || 0), 0)) + "  \n"
-        + "Times On Leaderboard: " + (timesonlb) + " / "+(lb_attempts)+" (~"
-            + (timesonlb / lb_attempts).toLocaleString(undefined, {style: "percent"}) + ")"+"  \n"
-        + "Highest Leaderboard Position: " + (inv.reduce((t, a) => Math.min(t, a.pos, a.pos2 || Infinity), Infinity))
+        + "- Total Score: " + (inv.reduce((t, a) => t + a.pts + (a.pts2 || 0), 0)) + "\n"
+        + "- Times On Leaderboard: " + (timesonlb) + " / "+(lb_attempts)+" (~"
+            + (timesonlb / lb_attempts).toLocaleString(undefined, {style: "percent"}) + ")"+"\n"
+        + "- Best Leaderboard Position: " + (inv.reduce((t, a) => Math.min(t, a.pos, a.pos2 || Infinity), Infinity))
             + "ᵗʰ place\n"
-        + "Best Day was "+`Day ${bestday.day}: ${bestday.pts + bestday.pts2} points, #${bestday.pos}/#${bestday.pos2}`+"\n"
+        + "- Worst Leaderboard Position: " + (attemptsonly.reduce((t, a) => Math.max(t, a.pos, a.pos2 || Infinity), 0))
+            + "ᵗʰ place\n"
+        + "- Best Day was "+`Day ${bestday.day}: ${bestday.pts + bestday.pts2} points, #${bestday.pos}/#${bestday.pos2}`+"\n"
         + "\n"
         + "| Day |      Time  |  Rank  | Score  |      Time  |  Rank  | Score  |\n"
         + "| -:  |      -:    |  -:    | -:     |      -:    |  -:    | -:     |\n"
