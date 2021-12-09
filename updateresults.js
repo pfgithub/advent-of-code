@@ -5,6 +5,17 @@ const fetch = require("node-fetch");
 
 const cookietext = fs.readFileSync(path.join(__dirname, "cookie.txt"));
 
+function th(num) {
+    const str = "" + num;
+    if(str[str.length-1] === "1") {
+        return num + "ˢᵗ";
+    }else if(str[str.length-1] === "2") {
+        return num + "ⁿᵈ";
+    }else if(str[str.length-1] === "3") {
+        return num + "ʳᵈ";
+    }else return num + "ᵗʰ";
+}
+
 async function runfor(year) {
     /** @type {string} */
     const input_text = (await (await fetch("https://adventofcode.com/"+year+"/leaderboard/self", {
@@ -51,10 +62,10 @@ async function runfor(year) {
         + "- Total Score: " + (inv.reduce((t, a) => t + a.pts + (a.pts2 || 0), 0)) + "\n"
         + "- Times On Leaderboard: " + (timesonlb) + " / "+(lb_attempts)+" (~"
             + (timesonlb / lb_attempts).toLocaleString(undefined, {style: "percent"}) + ")"+"\n"
-        + "- Best Leaderboard Position: " + (inv.reduce((t, a) => Math.min(t, a.pos, a.pos2 || Infinity), Infinity))
-            + "ᵗʰ place\n"
-        + "- Worst Leaderboard Position: " + (attemptsonly.reduce((t, a) => Math.max(t, a.pos, a.pos2 || Infinity), 0))
-            + "ᵗʰ place\n"
+        + "- Best Leaderboard Position: " + th(inv.reduce((t, a) => Math.min(t, a.pos, a.pos2 || Infinity), Infinity))
+            + " place\n"
+        + "- Worst Leaderboard Position: " + th(attemptsonly.reduce((t, a) => Math.max(t, a.pos, a.pos2 || Infinity), 0))
+            + " place\n"
         + "- Best Day was "+`Day ${bestday.day}: ${bestday.pts + bestday.pts2} points, #${bestday.pos}/#${bestday.pos2}`+"\n"
         + "\n"
         + "| Day |      Time  |  Rank  | Score  |      Time  |  Rank  | Score  |\n"

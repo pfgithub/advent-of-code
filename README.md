@@ -8,7 +8,7 @@
 
 - Total Score: 52
 - Times On Leaderboard: 2 / 14 (~14%)
-- Best Leaderboard Position: 62ᵗʰ place
+- Best Leaderboard Position: 62ⁿᵈ place
 - Worst Leaderboard Position: 1688ᵗʰ place
 - Best Day was Day 2: 39 points, #178/#62
 
@@ -65,7 +65,7 @@
 - Total Score: 212
 - Times On Leaderboard: 4 / 32 (~13%)
 - Best Leaderboard Position: 34ᵗʰ place
-- Worst Leaderboard Position: 1601ᵗʰ place
+- Worst Leaderboard Position: 1601ˢᵗ place
 - Best Day was Day 10: 115 points, #53/#34
 
 | Day |     Time | Rank | Score |     Time | Rank | Score |
