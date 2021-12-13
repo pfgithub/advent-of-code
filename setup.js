@@ -1,6 +1,7 @@
 const fs = require("fs");
 const path = require("path");
 // eslint-disable-next-line
+const fetch = require("node-fetch");
 
 let soln_day = process.argv[3];
 
@@ -55,7 +56,7 @@ const interval = setInterval(() => {
 
 setTimeout(async () => {
 	console.log("\nWait over! Fetching…");
-	const input_text = await (await (await import("node-fetch").default)("https://adventofcode.com/"+year+"/day/"+soln_day+"/input", {
+	const input_text = await (await fetch("https://adventofcode.com/"+year+"/day/"+soln_day+"/input", {
 		headers: {"Cookie": cookietext},
 	})).text();
 	fs.writeFileSync(txtfile_path, input_text, "utf-8");
