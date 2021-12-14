@@ -7,13 +7,14 @@
 ### 2021
 
 - Total Score: 53
-- Times On Leaderboard: 3 / 22 (~14%)
+- Times On Leaderboard: 3 / 24 (~13%)
 - Best Leaderboard Position: 62ⁿᵈ place
 - Worst Leaderboard Position: 1688ᵗʰ place
 - Best Day was Day 2: 39 points, #178/#62
 
 | Day |     Time | Rank | Score |     Time | Rank | Score |
 | --: | -------: | ---: | ----: | -------: | ---: | ----: |
+|  14 | 00:08:38 |  569 |       | 00:23:32 |  564 |       |
 |  13 | 00:14:31 |  946 |       | 00:16:11 |  504 |       |
 |  12 | 00:06:39 |  103 |       | 00:12:40 |  100 |     1 |
 |  11 | 00:15:41 |  755 |       | 00:17:44 |  682 |       |
