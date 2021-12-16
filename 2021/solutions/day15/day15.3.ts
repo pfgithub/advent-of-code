@@ -29,6 +29,7 @@ const practice = `
 // input = practice;
 input = input.trim();
 
+// @ts-expect-error
 import * as as from "./astar.js";
 
 const graph = new as.Graph(input.split("\n").map(line => line.split("").map(Number)));
@@ -37,4 +38,4 @@ const start = graph.grid[0][0];
 const end = graph.grid[graph.grid.length - 1][graph.grid[0].length - 1];
 const result = as.astar.search(graph, start, end);
 
-console.log(result.reduce((t, w) => t + w.weight, 0)); // expect=619
+console.log(result.reduce((t: any, w: any) => t + w.weight, 0)); // expect=619
