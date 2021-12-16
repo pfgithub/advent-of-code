@@ -3,3 +3,5 @@ yarn-error.log
 input.txt
 out.out
 cookie.txt
+zig-cache/
+zig-out/
