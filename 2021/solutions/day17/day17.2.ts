@@ -53,6 +53,7 @@ range(0, 500).forEach((initial_x) => {
             step();
             if(probe_pos.y > highest) highest = probe_pos.y;
             if(probe_pos.y < ymin) return;
+            if((probe_pos.x < xmin || probe_pos.x > xmax) && probe_vel.x <= 0) return;
         }
         count += 1;
     });
