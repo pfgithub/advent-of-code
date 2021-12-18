@@ -39,15 +39,16 @@ async function runfor(year) {
     const txtv = inv
         .map(v => {
             if(!attemptedlb(v)) {
-                return "| " + v.day + " | n/a | --- |   | n/a | --- |   |";
+                return "| " + ("" + v.day).padStart(3, " ") +
+                " |      n/a |  --- |       |      n/a |  --- |       |";
             }
             return "| " + ("" + v.day).padStart(3, " ") +
-            " | " + v.time.padStart(10, " ") +
-            " | " + ("" + v.pos).padStart(6, " ") +
-            " | " + (v.pts ? "" + v.pts : "").padStart(6, " ") +
-            " | " + v.time2.padStart(10, " ") +
-            " | " + ("" + v.pos2).padStart(6, " ") +
-            " | " + (v.pts2 ? "" + v.pts2 : "").padStart(6, " ") +
+            " | " + v.time.padStart(8, " ") +
+            " | " + ("" + v.pos).padStart(4, " ") +
+            " | " + (v.pts ? "" + v.pts : "").padStart(5, " ") +
+            " | " + v.time2.padStart(8, " ") +
+            " | " + ("" + v.pos2).padStart(4, " ") +
+            " | " + (v.pts2 ? "" + v.pts2 : "").padStart(5, " ") +
         " |"})
         .join("\n")
     ;
@@ -72,8 +73,8 @@ async function runfor(year) {
         + "- Median Leaderboard Position: " + th(median) + " place\n"
         + "- Best Day was "+`Day ${bestday.day}: ${bestday.pts + bestday.pts2} points, #${bestday.pos}/#${bestday.pos2}`+"\n"
         + "\n"
-        + "| Day |      Time  |  Rank  | Score  |      Time  |  Rank  | Score  |\n"
-        + "| -:  |      -:    |  -:    | -:     |      -:    |  -:    | -:     |\n"
+        + "| Day |     Time | Rank | Score |     Time | Rank | Score |\n"
+        + "| --: | -------: | ---: | ----: | -------: | ---: | ----: |\n"
         + txtv + "\n"
 
     return res;
