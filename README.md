@@ -10,6 +10,8 @@
 - Times On Leaderboard: 6 / 32 (~19%)
 - Best Leaderboard Position: 62ⁿᵈ place
 - Worst Leaderboard Position: 1688ᵗʰ place
+- Average Leaderboard Position: 424ᵗʰ place
+- Median Leaderboard Position: 273ʳᵈ place
 - Best Day was Day 2: 39 points, #178/#62
 
 | Day |     Time | Rank | Score |     Time | Rank | Score |
@@ -39,6 +41,8 @@
 - Times On Leaderboard: 11 / 48 (~23%)
 - Best Leaderboard Position: 24ᵗʰ place
 - Worst Leaderboard Position: 5076ᵗʰ place
+- Average Leaderboard Position: 629ᵗʰ place
+- Median Leaderboard Position: 262ⁿᵈ place
 - Best Day was Day 3: 100 points, #69/#33
 
 | Day |     Time | Rank | Score |     Time | Rank | Score |
@@ -75,6 +79,8 @@
 - Times On Leaderboard: 4 / 32 (~13%)
 - Best Leaderboard Position: 34ᵗʰ place
 - Worst Leaderboard Position: 1601ˢᵗ place
+- Average Leaderboard Position: 457ᵗʰ place
+- Median Leaderboard Position: 383ʳᵈ place
 - Best Day was Day 10: 115 points, #53/#34
 
 | Day |     Time | Rank | Score |     Time | Rank | Score |
@@ -108,6 +114,8 @@
 - Times On Leaderboard: 0 / 2 (~0%)
 - Best Leaderboard Position: 555ᵗʰ place
 - Worst Leaderboard Position: 646ᵗʰ place
+- Average Leaderboard Position: 600ᵗʰ place
+- Median Leaderboard Position: 646ᵗʰ place
 - Best Day was Day -1: 0 points, #undefined/#undefined
 
 | Day |     Time | Rank | Score |     Time | Rank | Score |

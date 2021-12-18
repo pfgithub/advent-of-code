@@ -55,6 +55,8 @@ async function runfor(year) {
     const timesonlb = inv.reduce((t, a) => t + +!! a.pts + +!! a.pts2, 0);
     const lb_attempts = inv.reduce((t, a) => t + (attemptedlb(a) ? 2 : 0), 0);
     const bestday = inv.reduce((t, a) => a.pts + a.pts2 > t.pts + t.pts2 ? a : t, {day: -1, pts: 0, pts2: 0});
+    const avg = attemptsonly.reduce((t, a) => t + a.pos + a.pos2, 0) / (attemptsonly.length * 2);
+    const median = attemptsonly.flatMap(a => [a.pos, a.pos2]).sort((a, b) => a - b)[attemptsonly.length];
 
     const res = ""
         + "### "+year+"\n"
@@ -66,6 +68,8 @@ async function runfor(year) {
             + " place\n"
         + "- Worst Leaderboard Position: " + th(attemptsonly.reduce((t, a) => Math.max(t, a.pos, a.pos2 || Infinity), 0))
             + " place\n"
+        + "- Average Leaderboard Position: " + th(avg |0) + " place\n"
+        + "- Median Leaderboard Position: " + th(median) + " place\n"
         + "- Best Day was "+`Day ${bestday.day}: ${bestday.pts + bestday.pts2} points, #${bestday.pos}/#${bestday.pos2}`+"\n"
         + "\n"
         + "| Day |      Time  |  Rank  | Score  |      Time  |  Rank  | Score  |\n"
