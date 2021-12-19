@@ -21,9 +21,9 @@ declare global{
 	) & {__is_vector?: never | N};
 	type _TupleOf<T, N extends number, R extends unknown[]> = R['length'] extends N ? R : _TupleOf<T, N, [T, ...R]>;
 
-	type Point2D = Vector<2, number>;
-	type Point3D = Vector<3, number>;
-	type Point4D = Vector<4, number>;
+	type Vec2 = Vector<2, number>;
+	type Vec3 = Vector<3, number>;
+	type Vec4 = Vector<4, number>;
 
 	type LowNumber = 1 | 2 | 3 | 4 | 5 | 6 | 7;
 
@@ -63,8 +63,8 @@ declare global{
 	function range(start: number, end: number): number[];
 	function range(start: number, end: number, step: number): number[];
 
-	let cardinals: Point2D[];
-	let diagonals: Point2D[];
-	let adjacents: Point2D[];
+	let cardinals: Vec2[];
+	let diagonals: Vec2[];
+	let adjacents: Vec2[];
 }
 export {};

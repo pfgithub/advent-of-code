@@ -203,7 +203,7 @@ input = input.trim();
 
 // ok:
 
-const scanners = input.split("\n\n").map(l => l.split("\n").slice(1).map(l => l.split(",").map(Number) as Point3D));
+const scanners = input.split("\n\n").map(l => l.split("\n").slice(1).map(l => l.split(",").map(Number) as Vec3));
 
 const rotations = [
     // That is, one scanner might call a direction positive x, while another scanner might
@@ -256,30 +256,30 @@ const rotations = [
 
     // damn it turns out math is wrong sometimes
     // (spoiler alert: I probably applied it wrong somehow)
-    (v: Point3D) => vec(v.x,v.y,v.z),
-    (v: Point3D) => vec(v.x,v.z,-v.y),
-    (v: Point3D) => vec(v.x,-v.y,-v.z),
-    (v: Point3D) => vec(v.x,-v.z,v.y),
-    (v: Point3D) => vec(-v.x,-v.y,v.z),
-    (v: Point3D) => vec(-v.x,-v.z,-v.y),
-    (v: Point3D) => vec(-v.x,v.y,-v.z),
-    (v: Point3D) => vec(-v.x,v.z,v.y),
-    (v: Point3D) => vec(v.z,v.x,v.y),
-    (v: Point3D) => vec(v.z,v.y,-v.x),
-    (v: Point3D) => vec(v.z,-v.x,-v.y),
-    (v: Point3D) => vec(v.z,-v.y,v.x),
-    (v: Point3D) => vec(-v.z,-v.x,v.y),
-    (v: Point3D) => vec(-v.z,-v.y,-v.x),
-    (v: Point3D) => vec(-v.z,v.x,-v.y),
-    (v: Point3D) => vec(-v.z,v.y,v.x),
-    (v: Point3D) => vec(v.y,v.z,v.x),
-    (v: Point3D) => vec(v.y,v.x,-v.z),
-    (v: Point3D) => vec(v.y,-v.z,-v.x),
-    (v: Point3D) => vec(v.y,-v.x,v.z),
-    (v: Point3D) => vec(-v.y,-v.z,v.x),
-    (v: Point3D) => vec(-v.y,-v.x,-v.z),
-    (v: Point3D) => vec(-v.y,v.z,-v.x),
-    (v: Point3D) => vec(-v.y,v.x,v.z),
+    (v: Vec3) => vec(v.x,v.y,v.z),
+    (v: Vec3) => vec(v.x,v.z,-v.y),
+    (v: Vec3) => vec(v.x,-v.y,-v.z),
+    (v: Vec3) => vec(v.x,-v.z,v.y),
+    (v: Vec3) => vec(-v.x,-v.y,v.z),
+    (v: Vec3) => vec(-v.x,-v.z,-v.y),
+    (v: Vec3) => vec(-v.x,v.y,-v.z),
+    (v: Vec3) => vec(-v.x,v.z,v.y),
+    (v: Vec3) => vec(v.z,v.x,v.y),
+    (v: Vec3) => vec(v.z,v.y,-v.x),
+    (v: Vec3) => vec(v.z,-v.x,-v.y),
+    (v: Vec3) => vec(v.z,-v.y,v.x),
+    (v: Vec3) => vec(-v.z,-v.x,v.y),
+    (v: Vec3) => vec(-v.z,-v.y,-v.x),
+    (v: Vec3) => vec(-v.z,v.x,-v.y),
+    (v: Vec3) => vec(-v.z,v.y,v.x),
+    (v: Vec3) => vec(v.y,v.z,v.x),
+    (v: Vec3) => vec(v.y,v.x,-v.z),
+    (v: Vec3) => vec(v.y,-v.z,-v.x),
+    (v: Vec3) => vec(v.y,-v.x,v.z),
+    (v: Vec3) => vec(-v.y,-v.z,v.x),
+    (v: Vec3) => vec(-v.y,-v.x,-v.z),
+    (v: Vec3) => vec(-v.y,v.z,-v.x),
+    (v: Vec3) => vec(-v.y,v.x,v.z),
 ];
 
 let ic = 0;
@@ -287,8 +287,8 @@ let ic = 0;
 console.log("…");
 
 const offsets = new Map<number, {
-    rotation: (v: Point3D) => Point3D,
-    offset_rel0: Point3D,
+    rotation: (v: Vec3) => Vec3,
+    offset_rel0: Vec3,
 }>();
 const checkedvs = new Set<string>();
 let centered = false;

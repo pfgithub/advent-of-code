@@ -35,7 +35,7 @@ v.forEach((line, y) => {
 
 let mq = 1;
 
-let basins: Point2D[] = [];
+let basins: Vec2[] = [];
 
 board.forEach((v, [x, y]) => {
     if(
@@ -134,18 +134,18 @@ console.log(items.slice(0, 3).reduce((t, a) => a * t, 1));
 
 type nobi = number | bigint;
 type Board<T> = {
-	get(pos: Point2D): T;
-	set(pos: Point2D, t: T): void;
+	get(pos: Vec2): T;
+	set(pos: Vec2, t: T): void;
 	clear(): void;
-	forEach(visitor: (v: T, pos: Point2D) => void): void;
-	print(printer?: (v: T, pos: Point2D) => string | nobi): string;
+	forEach(visitor: (v: T, pos: Vec2) => void): void;
+	print(printer?: (v: T, pos: Vec2) => string | nobi): string;
 	copy(): Board<T>;
 };
 function makeBoard<T>(fill: T): Board<T> {
 	// it would be useful if board could center at 0,0 and expand infinitely
 	let board: T[][] = [];
 	let limits:
-		| { min: Point2D, max: Point2D }
+		| { min: Vec2, max: Vec2 }
 		| undefined;
 	let reso: Board<T> = {
 		clear: () => {

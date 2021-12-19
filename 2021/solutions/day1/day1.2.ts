@@ -19,10 +19,10 @@ console.log(vec(2, 3, 4).add([3, 4, 5]).mapt(l => l + 2));
 
 const v = vec(2, 3, 4).add([3, 4, 5]);
 
-const a: Point2D = vec(1, 2).add([3, 4]);
-const b: Point3D = vec(1, 2, 3).add([3, 4, 5]).mapt(l => l + 2);
-const g: Point3D = b.mapt(l => l + 2);
-const wa: Point3D = b.add([3, 4, 5]).mapt(l => l + 2).mapt(l => l + 2);
+const a: Vec2 = vec(1, 2).add([3, 4]);
+const b: Vec3 = vec(1, 2, 3).add([3, 4, 5]).mapt(l => l + 2);
+const g: Vec3 = b.mapt(l => l + 2);
+const wa: Vec3 = b.add([3, 4, 5]).mapt(l => l + 2).mapt(l => l + 2);
 
 const d = vec(1, 2, 3);//.add([3, 4, 5]).mapt(l => l + 2);
 

@@ -143,7 +143,7 @@ const allm = [...input.matchAll(/(\d+) => [^§]+?offset_rel0: \[ (-?\d+), (-?\d+
     .map(w => [+w[1], vec(+w[2], +w[3], +w[4])])
 ;
 
-function manhattanDistance(l: Point3D, r: Point3D): number {
+function manhattanDistance(l: Vec3, r: Vec3): number {
     return Math.abs(l.x - r.x) + Math.abs(l.y - r.y) + Math.abs(l.z - r.z);
 }
 

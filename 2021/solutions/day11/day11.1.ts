@@ -40,7 +40,7 @@ input.split("\n").forEach((line, y) => {
 let flashes = 0;
 
 
-function flash(pos: Point2D) {
+function flash(pos: Vec2) {
     flashes += 1;
     board.set(pos, 0);
     for(const dir of adjacents) {
@@ -55,7 +55,7 @@ function flash(pos: Point2D) {
     }
 }
 
-function incr(pos: Point2D) {
+function incr(pos: Vec2) {
     const value = board.get(pos);
     if(value === 0) {
         return;
@@ -86,18 +86,18 @@ console.log(flashes);
 
 type nobi = number | bigint;
 type Board<T> = {
-	get(pos: Point2D): T;
-	set(pos: Point2D, t: T): void;
+	get(pos: Vec2): T;
+	set(pos: Vec2, t: T): void;
 	clear(): void;
-	forEach(visitor: (v: T, pos: Point2D) => void): void;
-	print(printer?: (v: T, pos: Point2D) => string | nobi): string;
+	forEach(visitor: (v: T, pos: Vec2) => void): void;
+	print(printer?: (v: T, pos: Vec2) => string | nobi): string;
 	copy(): Board<T>;
 };
 function makeBoard<T>(fill: T): Board<T> {
 	// it would be useful if board could center at 0,0 and expand infinitely
 	let board: T[][] = [];
 	let limits:
-		| { min: Point2D, max: Point2D }
+		| { min: Vec2, max: Vec2 }
 		| undefined;
 	let reso: Board<T> = {
 		clear: () => {
