@@ -9,6 +9,7 @@ type Board<T> = {
 	forEach(visitor: (v: T, pos: Vec2) => void): void;
 	print(printer?: (v: T, pos: Vec2) => string | nobi): string;
 	copy(): Board<T>;
+	map<U>(fill: U, visitor: (v: T, pos: Vec2) => U): Board<U>;
     fill: T,
 };
 function makeBoard<T>(fill: T): Board<T> {
@@ -53,6 +54,13 @@ function makeBoard<T>(fill: T): Board<T> {
 					visitor(reso.get([x, y]), [x, y]);
 				}
 			}
+		},
+		map: (fill, visitor) => {
+			const nb = makeBoard(fill);
+			reso.forEach((v, pos) => {
+				nb.set(pos, visitor(v, pos));
+			});
+			return nb;
 		},
 		copy: () => {
 			let nb = makeBoard<T>(fill);

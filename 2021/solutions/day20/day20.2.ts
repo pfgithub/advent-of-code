@@ -38,9 +38,7 @@ boardraw.split("\n").forEach((line, y) => {
 
 
 function step() {
-    const nb = makeBoard(board.fill === "." ? decoder[0] : decoder[512 - 1]);
-
-    board.forEach((item, [x, y]) => {
+    board = board.map(board.fill === "." ? decoder[0] : decoder[512 - 1], (item, [x, y]) => {
         const res =
             board.get([x - 1, y - 1]) +
             board.get([x, y - 1]) +
@@ -55,11 +53,8 @@ function step() {
         const val = parseInt(res.replaceAll(".", "0").replaceAll("#", "1"), 2);
 
         // console.log(val);
-        const rv = decoder[val];
-        nb.set([x, y], rv);
+        return decoder[val];
     });
-
-    board = nb;
 }
 
 board.print().dwth(log);
@@ -81,6 +76,7 @@ type Board<T> = {
 	forEach(visitor: (v: T, pos: Vec2) => void): void;
 	print(printer?: (v: T, pos: Vec2) => string | nobi): string;
 	copy(): Board<T>;
+	map<U>(fill: U, visitor: (v: T, pos: Vec2) => U): Board<U>;
     fill: T,
 };
 function makeBoard<T>(fill: T): Board<T> {
@@ -125,6 +121,13 @@ function makeBoard<T>(fill: T): Board<T> {
 					visitor(reso.get([x, y]), [x, y]);
 				}
 			}
+		},
+		map: (fill, visitor) => {
+			const nb = makeBoard(fill);
+			reso.forEach((v, pos) => {
+				nb.set(pos, visitor(v, pos));
+			});
+			return nb;
 		},
 		copy: () => {
 			let nb = makeBoard<T>(fill);
