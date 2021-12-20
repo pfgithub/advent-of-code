@@ -68,41 +68,50 @@ function makeBoard<T>(fill: T): Board<T> {
 			return nb;
 		},
 		print: (printer = v => v as any): string => {
-			// ratelimit print
 			if (!limits) return "*no board to print*";
-			let ylength = 0;
-			for (let y = limits.min.y - 1; y <= limits.max.y + 1; y++) {
-				ylength = Math.max(y.toString().length, ylength);
-			}
+
+			// if I wanted to be super fancy I could support
+			// print functions that returned multiline things
+
 			const resc: string[] = [];
-			let llen: number = limits.max.x - limits.min.x + 3;
+
+			const printed: string[][] = [];
+			let xlength = 0;
+			const ylines: string[] = [];
+			let ylength = 0;
+
+			const xmin = limits.min.x - 1;
+			const xmax = limits.max.x + 1;
 			for (let y = limits.min.y - 1; y <= limits.max.y + 1; y++) {
-				let line = "";
-				for (let x = limits.min.x - 1; x <= limits.max.x + 1; x++) {
-					line += printer(reso.get([x, y]), [x, y]);
+				const pline: string[] = [];
+				const wyvy = "" + y;
+				ylines.push(wyvy);
+				ylength = Math.max(wyvy.length, ylength);
+				for (let x = xmin; x <= xmax; x++) {
+					const envy = "" + printer(reso.get([x, y]), [x, y])
+					pline.push(envy);
+					xlength = Math.max(envy.length, xlength);
 				}
-				if(line.length > llen) llen = line.length;
-				resc.push(y.toString().padStart(ylength, " ") + " | " + line + " |");
+				printed.push(pline);
 			}
-			resc.unshift(
-				" ".repeat(ylength) +
-					" .-" +
-					"-".repeat(llen) +
-					"-. " + (limits.min.y - 1) + " .. " + (limits.max.y + 1),
-			);
-			resc.push(
-				" ".repeat(ylength) +
-					" '-" +
-					"-".repeat(llen) +
-					"-'",
-			);
-			return resc.join("\n");
+
+			const txlenl = 1 + ylength + 3;
+			const txlen = (xmax - xmin + 1) * xlength;
+
+			return ",-".padStart(txlenl, " ") + "-".repeat(txlen) + "-. " +
+			(limits.min.y - 1) + " .. " + (limits.max.y + 1) + "\n" +
+			printed.map((pline, y) => {
+				return " " + ylines[y].padStart(ylength, " ") + " | " + pline.map((envy, x) => {
+					return envy.padStart(xlength, " ");
+				}).join("") + " |";
+			}).join("\n") + "\n" + "`-".padStart(txlenl, " ") + "-".repeat(txlen) + "-´";
 		},
 	};
 	return reso;
 }
 
 const demoboard = makeBoard(0).dwth(b => b.set([3, 4], 5));
-demoboard.print(a => " " + a).dwth(log);
+demoboard.set([3, 3], 10);
+demoboard.print().dwth(log);
 
 console.log([1, 2, 3].op([4, 5, 6], (a, b) => [a, b])); // zip zoop
