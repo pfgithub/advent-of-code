@@ -54,7 +54,7 @@ function step() {
         ;
         const val = parseInt(res.replaceAll(".", "0").replaceAll("#", "1"), 2);
 
-        // console.log(val);
+        console.log(val);
         const rv = decoder[val];
         if(rv != nb.fill) {
             nb.set([x, y], rv);
@@ -65,14 +65,15 @@ function step() {
 }
 
 board.print().dwth(log);
-range(50).forEach(step);
+step();
+step();
 board.print().dwth(log);
 
 let pxc = 0;
 board.forEach((v) => {
     if(v === "#") pxc++;
 });
-console.log(pxc);
+console.log(pxc); //expect=5354
 
 
 type nobi = number | bigint;
