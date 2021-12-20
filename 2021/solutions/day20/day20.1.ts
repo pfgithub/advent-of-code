@@ -56,9 +56,7 @@ function step() {
 
         console.log(val);
         const rv = decoder[val];
-        if(rv != nb.fill) {
-            nb.set([x, y], rv);
-        }
+        nb.set([x, y], rv);
     });
 
     board = nb;
@@ -96,7 +94,7 @@ function makeBoard<T>(fill: T): Board<T> {
 		clear: () => {
 			board = [];
 		},
-        fill,
+		fill,
 		get: (pos) => {
 			if (!limits) return fill;
 			if (
@@ -108,6 +106,7 @@ function makeBoard<T>(fill: T): Board<T> {
 			return bval === undefined ? fill : bval;
 		},
 		set: (pos, v) => {
+			if(v === fill) return;
 			if (!limits) {
 				limits = {min: dupe(pos), max: dupe(pos)};
             }

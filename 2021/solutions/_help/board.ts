@@ -9,6 +9,7 @@ type Board<T> = {
 	forEach(visitor: (v: T, pos: Vec2) => void): void;
 	print(printer?: (v: T, pos: Vec2) => string | nobi): string;
 	copy(): Board<T>;
+    fill: T,
 };
 function makeBoard<T>(fill: T): Board<T> {
 	// it would be useful if board could center at 0,0 and expand infinitely
@@ -20,6 +21,7 @@ function makeBoard<T>(fill: T): Board<T> {
 		clear: () => {
 			board = [];
 		},
+		fill,
 		get: (pos) => {
 			if (!limits) return fill;
 			if (
@@ -31,6 +33,7 @@ function makeBoard<T>(fill: T): Board<T> {
 			return bval === undefined ? fill : bval;
 		},
 		set: (pos, v) => {
+			if(v === fill) return;
 			if (!limits) {
 				limits = {min: dupe(pos), max: dupe(pos)};
             }
@@ -41,8 +44,12 @@ function makeBoard<T>(fill: T): Board<T> {
 		},
 		forEach: visitor => {
 			if (!limits) return;
-			for (let y = limits.min.y; y <= limits.max.y; y++) {
-				for (let x = limits.min.x; x <= limits.max.x; x++) {
+            const miny = limits.min.y - 1;
+            const maxy = limits.max.y + 1;
+            const minx = limits.min.x - 1;
+            const maxx = limits.max.x + 1;
+			for (let y = miny; y <= maxy; y++) {
+				for (let x = minx; x <= maxx; x++) {
 					visitor(reso.get([x, y]), [x, y]);
 				}
 			}
