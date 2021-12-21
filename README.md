@@ -8,6 +8,7 @@
 
 - Total Score: 278
 - Times On Leaderboard: 8 / 38 (~21%)
+- Times Top 1000: 33 / 38 (~87%)
 - Best Leaderboard Position: 15ᵗʰ place
 - Worst Leaderboard Position: 1688ᵗʰ place
 - Average Leaderboard Position: 494ᵗʰ place
@@ -42,6 +43,7 @@
 
 - Total Score: 419
 - Times On Leaderboard: 11 / 48 (~23%)
+- Times Top 1000: 38 / 48 (~79%)
 - Best Leaderboard Position: 24ᵗʰ place
 - Worst Leaderboard Position: 5076ᵗʰ place
 - Average Leaderboard Position: 629ᵗʰ place
@@ -80,6 +82,7 @@
 
 - Total Score: 212
 - Times On Leaderboard: 4 / 32 (~13%)
+- Times Top 1000: 29 / 32 (~91%)
 - Best Leaderboard Position: 34ᵗʰ place
 - Worst Leaderboard Position: 1601ˢᵗ place
 - Average Leaderboard Position: 457ᵗʰ place
@@ -115,6 +118,7 @@
 
 - Total Score: 0
 - Times On Leaderboard: 0 / 2 (~0%)
+- Times Top 1000: 2 / 2 (~100%)
 - Best Leaderboard Position: 555ᵗʰ place
 - Worst Leaderboard Position: 646ᵗʰ place
 - Average Leaderboard Position: 600ᵗʰ place

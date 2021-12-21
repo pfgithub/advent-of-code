@@ -53,9 +53,10 @@ async function runfor(year) {
         .join("\n")
     ;
 
-    const timesonlb = inv.reduce((t, a) => t + +!! a.pts + +!! a.pts2, 0);
-    const lb_attempts = inv.reduce((t, a) => t + (attemptedlb(a) ? 2 : 0), 0);
-    const bestday = inv.reduce((t, a) => a.pts + a.pts2 > t.pts + t.pts2 ? a : t, {day: -1, pts: 0, pts2: 0});
+    const timesonlb = attemptsonly.reduce((t, a) => t + +!! a.pts + +!! a.pts2, 0);
+    const timestop1k = attemptsonly.reduce((t, a) => t + +(a.pos <= 1000) + +(a.pos2 <= 1000), 0);
+    const lb_attempts = attemptsonly.length * 2;
+    const bestday = attemptsonly.reduce((t, a) => a.pts + a.pts2 > t.pts + t.pts2 ? a : t, {day: -1, pts: 0, pts2: 0});
     const avg = attemptsonly.reduce((t, a) => t + a.pos + a.pos2, 0) / (attemptsonly.length * 2);
     const median = attemptsonly.flatMap(a => [a.pos, a.pos2]).sort((a, b) => a - b)[attemptsonly.length];
 
@@ -65,6 +66,8 @@ async function runfor(year) {
         + "- Total Score: " + (inv.reduce((t, a) => t + a.pts + (a.pts2 || 0), 0)) + "\n"
         + "- Times On Leaderboard: " + (timesonlb) + " / "+(lb_attempts)+" (~"
             + (timesonlb / lb_attempts).toLocaleString(undefined, {style: "percent"}) + ")"+"\n"
+        + "- Times Top 1000: " + (timestop1k) + " / "+(lb_attempts)+" (~"
+            + (timestop1k / lb_attempts).toLocaleString(undefined, {style: "percent"}) + ")"+"\n"
         + "- Best Leaderboard Position: " + th(inv.reduce((t, a) => Math.min(t, a.pos, a.pos2 || Infinity), Infinity))
             + " place\n"
         + "- Worst Leaderboard Position: " + th(attemptsonly.reduce((t, a) => Math.max(t, a.pos, a.pos2 || Infinity), 0))
