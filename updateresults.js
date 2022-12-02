@@ -106,7 +106,7 @@ async function main() {
     console.log(rt);
 
     const mc = fs.readFileSync("./README.md", "utf-8");
-    const wc = mc.replace("<!-- dynamic-results:"+year+" start -->[^\\x1b]+<!-- dynamic-results:"+year+" end -->", rt);
+    const wc = mc.replace(new RegExp("<!-- dynamic-results:"+year+" start -->[^\\x1b]+<!-- dynamic-results:"+year+" end -->"), rt);
     fs.writeFileSync("./README.md", wc);
 }
 
