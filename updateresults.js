@@ -18,9 +18,10 @@ function th(num) {
 
 async function runfor(year) {
     /** @type {string} */
-    const input_text = (await (await fetch("https://adventofcode.com/"+year+"/leaderboard/self", {
+    const input_text_raw = (await (await fetch("https://adventofcode.com/"+year+"/leaderboard/self", {
         headers: {"Cookie": cookietext},
-    })).text()).match(/oard-daydesc-both">    Time   Rank  Score<\/span>([^<]+?)<\/pre>/)[1].trim();
+    })).text());
+    const input_text = input_text_raw.match(/oard-daydesc-both">.+?<\/span>([^<]+?)<\/pre>/)[1].trim();
 
     const inv = input_text.split("\n").map(l => l.trim().split(/ +/g))
         .map(([day, time, pos, pts, time2, pos2, pts2]) => ({day: +day, time, pos: +pos, pts: +pts, time2, pos2: +pos2, pts2: +pts2}))
@@ -31,6 +32,7 @@ async function runfor(year) {
         : year === "2019" && a.day === 5 ? false
         : year === "2018" && a.day === 1 ? false
         : year === "2021" && a.day === 5 ? false
+        : year === "2022" && a.day === 1 ? false
         : a.time.split(":").length === 3 && a.time2.split(":").length === 3
     );
 
@@ -91,23 +93,20 @@ async function runfor(year) {
 */
 
 async function main() {
-    const v = await Promise.all([
-        runfor("2021"),
-        runfor("2020"),
-        runfor("2019"),
-        runfor("2018"),
-    ]);
+    const year = "2022";
+    const v = await runfor(year);
 
     const rt = ""
-        + "<!-- start-results -->\n"
+        + "<!-- dynamic-results:"+year+" start -->\n"
         + "\n"
-        + v.join("\n")
+        + v
         + "\n"
-        + "<!-- end-results -->"
+        + "<!-- dynamic-results:"+year+" end -->"
     ;
+    console.log(rt);
 
     const mc = fs.readFileSync("./README.md", "utf-8");
-    const wc = mc.replace(/<!-- start-results -->[^\x1b]+<!-- end-results -->/, rt);
+    const wc = mc.replace("<!-- dynamic-results:"+year+" start -->[^\\x1b]+<!-- dynamic-results:"+year+" end -->", rt);
     fs.writeFileSync("./README.md", wc);
 }
 

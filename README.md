@@ -2,7 +2,24 @@
 
 ## results
 
-<!-- start-results -->
+<!-- dynamic-results:2022 start -->
+
+### 2022
+
+- Total Score: 0
+- Times On Leaderboard: 0 / 0 (~NaN%)
+- Times Top 1000: 0 / 0 (~NaN%)
+- Best Leaderboard Position: 122387ᵗʰ place
+- Worst Leaderboard Position: 0ᵗʰ place
+- Average Leaderboard Position: 0ᵗʰ place
+- Median Leaderboard Position: undefinedᵗʰ place
+- Best Day was Day -1: 0 points, #undefined/#undefined
+
+| Day |     Time | Rank | Score |     Time | Rank | Score |
+| --: | -------: | ---: | ----: | -------: | ---: | ----: |
+|   1 |      n/a |  --- |       |      n/a |  --- |       |
+
+<!-- dynamic-results:2022 end -->
 
 ### 2021
 
@@ -132,8 +149,6 @@
 |   2 | 00:07:56 |  555 |       | 00:18:28 |  646 |       |
 |   1 |      n/a |  --- |       |      n/a |  --- |       |
 
-<!-- end-results -->
-
 ## usage
 
 my adventofcode solutions and helper tool
@@ -146,11 +161,10 @@ my adventofcode solutions and helper tool
 
 how to use:
 
-open 3-4 terminal windows
+open 2-3 terminal windows
 
 - leave one blank
 - run `yarn watch` on one
-- run `yarn watchPrettier` on one (unless your editor is set to format code with prettier)
 - use the blank one to run `yarn go 2020 X` before the advent opens
 - edit the code in a text editor
 - on save, your code will run and results will be shown
@@ -163,3 +177,4 @@ open 3-4 terminal windows
 - consider making a file scratchpad.ts
 - yarn go will stay open and you can press enter at any time to commit the scratchpad to a real file
 - just to eliminate that "find the right file, copy/paste" thing and not make like day3.1 day3.2 day3.3 and all that
+- this is a good idea, we should do this
