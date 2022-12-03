@@ -7,16 +7,17 @@
 ### 2022
 
 - Total Score: 0
-- Times On Leaderboard: 0 / 2 (~0%)
-- Times Top 1000: 2 / 2 (~100%)
+- Times On Leaderboard: 0 / 4 (~0%)
+- Times Top 1000: 4 / 4 (~100%)
 - Best Leaderboard Position: 346ᵗʰ place
-- Worst Leaderboard Position: 467ᵗʰ place
-- Average Leaderboard Position: 406ᵗʰ place
+- Worst Leaderboard Position: 682ⁿᵈ place
+- Average Leaderboard Position: 461ˢᵗ place
 - Median Leaderboard Position: 467ᵗʰ place
 - Best Day was Day -1: 0 points, #undefined/#undefined
 
 | Day |     Time | Rank | Score |     Time | Rank | Score |
 | --: | -------: | ---: | ----: | -------: | ---: | ----: |
+|   3 | 00:04:17 |  349 |       | 00:09:23 |  682 |       |
 |   2 | 00:04:54 |  346 |       | 00:08:43 |  467 |       |
 |   1 |      n/a |  --- |       |      n/a |  --- |       |
 
