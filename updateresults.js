@@ -33,6 +33,7 @@ async function runfor(year) {
         : year === "2018" && a.day === 1 ? false
         : year === "2021" && a.day === 5 ? false
         : year === "2022" && a.day === 1 ? false
+        : year === "2023" && a.day === 1 ? false
         : a.time.split(":").length === 3 && a.time2.split(":").length === 3
     );
 
@@ -93,7 +94,7 @@ async function runfor(year) {
 */
 
 async function main() {
-    const year = "2022";
+    const year = "2023";
     const v = await runfor(year);
 
     const rt = ""
@@ -106,7 +107,7 @@ async function main() {
     console.log(rt);
 
     const mc = fs.readFileSync("./README.md", "utf-8");
-    const wc = mc.replace(new RegExp("<!-- dynamic-results:"+year+" start -->[^\\x1b]+<!-- dynamic-results:"+year+" end -->"), rt);
+    const wc = mc.replace(new RegExp("<!-- dynamic-results:"+year+" start -->[^\\x1b]+?<!-- dynamic-results:"+year+" end -->"), rt);
     fs.writeFileSync("./README.md", wc);
 }
 

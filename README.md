@@ -2,6 +2,25 @@
 
 ## results
 
+<!-- dynamic-results:2023 start -->
+
+### 2023
+
+- Total Score: 0
+- Times On Leaderboard: 0 / 0 (~NaN%)
+- Times Top 1000: 0 / 0 (~NaN%)
+- Best Leaderboard Position: 61762ⁿᵈ place
+- Worst Leaderboard Position: 0ᵗʰ place
+- Average Leaderboard Position: 0ᵗʰ place
+- Median Leaderboard Position: undefinedᵗʰ place
+- Best Day was Day -1: 0 points, #undefined/#undefined
+
+| Day |     Time | Rank | Score |     Time | Rank | Score |
+| --: | -------: | ---: | ----: | -------: | ---: | ----: |
+|   1 |      n/a |  --- |       |      n/a |  --- |       |
+
+<!-- dynamic-results:2023 end -->
+
 <!-- dynamic-results:2022 start -->
 
 ### 2022
@@ -156,24 +175,9 @@
 
 my adventofcode solutions and helper tool
 
-`yarn install`  
-`yarn go 2020 X` - get set up for a challenge  
-`yarn watch` - start running code on save  
-`yarn prettierwatch` - format solution code on save
-`node updateresults.js` - update readme.md results section
-
-how to use:
-
-open 2-3 terminal windows
-
-- leave one blank
-- run `yarn watch` on one
-- use the blank one to run `yarn go 2020 X` before the advent opens
-- edit the code in a text editor
-- on save, your code will run and results will be shown
-- accidental infinite loops will be killed by re-saving the code
-- code may run twice because of prettier
-- your input will be loaded into `dayX.txt`, read it from the `input` variable (as a string, trimmed automatically) or from `lines`, pre-split by `\n`, or from dblines, pre-split by `\n\n` and then by `\n`
+`bun install`
+`bun go 2023 X` (day num)
+`bun updateresults.js`
 
 ## something to consider
 
