@@ -40,7 +40,6 @@ if(!alreadyinit) {
 		"utf-8",
 	),
 );
-fs.writeFileSync(txtfile_path, "", "utf-8");
 
 }
 if(!fs.existsSync(path.join(__dirname, year, "solutions", solnName, "day1.txt"))) {
