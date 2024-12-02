@@ -9,7 +9,7 @@
 - Total Score: 0
 - Times On Leaderboard: 0 / 0 (~NaN%)
 - Times Top 1000: 0 / 0 (~NaN%)
-- Best Leaderboard Position: 103565ᵗʰ place
+- Best Leaderboard Position: 12579ᵗʰ place
 - Worst Leaderboard Position: 0ᵗʰ place
 - Average Leaderboard Position: 0ᵗʰ place
 - Median Leaderboard Position: undefinedᵗʰ place
@@ -17,6 +17,7 @@
 
 | Day |     Time | Rank | Score |     Time | Rank | Score |
 | --: | -------: | ---: | ----: | -------: | ---: | ----: |
+|   2 |      n/a |  --- |       |      n/a |  --- |       |
 |   1 |      n/a |  --- |       |      n/a |  --- |       |
 
 <!-- dynamic-results:2024 end -->
