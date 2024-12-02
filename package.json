@@ -2,7 +2,7 @@
 	"scripts": {
 		"watch": "onchange --kill */solutions/\\*\\*/\\*.{js,ts} -- ./node_modules/.bin/esno '{{changed}}'",
 		"prettierwatch": "onchange */solutions/\\*\\*/\\*.{js,ts,md,json} \\*.{js,md,json} -- prettier --write '{{changed}}'",
-		"go": "node setup.js"
+		"go": "bun setup.js"
 	},
 	"dependencies": {
 		"clipboardy": "^3.0.0",

@@ -2,6 +2,25 @@
 
 ## results
 
+<!-- dynamic-results:2024 start -->
+
+### 2024
+
+- Total Score: 0
+- Times On Leaderboard: 0 / 0 (~NaN%)
+- Times Top 1000: 0 / 0 (~NaN%)
+- Best Leaderboard Position: 103565ᵗʰ place
+- Worst Leaderboard Position: 0ᵗʰ place
+- Average Leaderboard Position: 0ᵗʰ place
+- Median Leaderboard Position: undefinedᵗʰ place
+- Best Day was Day -1: 0 points, #undefined/#undefined
+
+| Day |     Time | Rank | Score |     Time | Rank | Score |
+| --: | -------: | ---: | ----: | -------: | ---: | ----: |
+|   1 |      n/a |  --- |       |      n/a |  --- |       |
+
+<!-- dynamic-results:2024 end -->
+
 <!-- dynamic-results:2023 start -->
 
 ### 2023

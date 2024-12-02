@@ -19,7 +19,14 @@ let initialText = fs.readFileSync(
 const txtfile = solnName + ".txt";
 const txtfile_path = path.join(__dirname, year, "solutions", solnName, txtfile);
 
+let alreadyinit = false;
+try {
 fs.mkdirSync(path.join(__dirname, year, "solutions", solnName));
+}catch(e) {
+	alreadyinit = true;
+	console.log("already initialized day");
+}
+if(!alreadyinit) {
 [
 	solnName + ".1.ts",
 	solnName + ".2.ts",
@@ -34,6 +41,9 @@ fs.mkdirSync(path.join(__dirname, year, "solutions", solnName));
 	),
 );
 fs.writeFileSync(txtfile_path, "", "utf-8");
+
+}
+if(!fs.existsSync(path.join(__dirname, year, "solutions", solnName, "day1.txt"))) {
 
 console.log("done. waiting for the time…");
 
@@ -54,11 +64,21 @@ const interval = setInterval(() => {
 	process.stdout.write("\r"+wait_time+"ms\x1b[K");
 }, 1000);
 
-setTimeout(async () => {
-	console.log("\nWait over! Fetching…");
-	const input_text = await (await fetch("https://adventofcode.com/"+year+"/day/"+soln_day+"/input", {
-		headers: {"Cookie": cookietext},
-	})).text();
-	fs.writeFileSync(txtfile_path, input_text, "utf-8");
-	console.log("Fetched!");
-}, res_time.getTime() - Date.now());
+await Bun.sleep(res_time.getTime() - Date.now());
+console.log("\nWait over! Fetching…");
+const input_text = await (await fetch("https://adventofcode.com/"+year+"/day/"+soln_day+"/input", {
+	headers: {"Cookie": cookietext},
+})).text();
+fs.writeFileSync(txtfile_path, input_text, "utf-8");
+console.log("Fetched!");
+
+}else{
+	console.log("input already fetched");
+}
+
+console.log("\u001b[2J\u001b[0;0HSave the file to run");
+await Bun.spawn({
+	cmd: ["bunx", "onchange", "-k", path.join(__dirname, year, "solutions", solnName, "*.ts"), "--", "bun", "{{file}}"],
+	// cmd: ["bun", "--watch", path.join(__dirname, year, "solutions", solnName, solnName + ".1.ts")],
+	stdio: ["inherit", "inherit", "inherit"],
+});

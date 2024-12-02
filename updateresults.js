@@ -34,6 +34,8 @@ async function runfor(year) {
         : year === "2021" && a.day === 5 ? false
         : year === "2022" && a.day === 1 ? false
         : year === "2023" && a.day === 1 ? false
+        : year === "2024" && a.day === 1 ? false
+        : year === "2024" && a.day === 2 ? false
         : a.time.split(":").length === 3 && a.time2.split(":").length === 3
     );
 
@@ -94,7 +96,7 @@ async function runfor(year) {
 */
 
 async function main() {
-    const year = "2023";
+    const year = "2024";
     const v = await runfor(year);
 
     const rt = ""
